@@ -1,0 +1,28 @@
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/core"
+brew "fzf"
+brew "ghq"
+brew "hub"
+brew "jq"
+brew "mas"
+brew "neovim"
+brew "python@3.10"
+cask "docker"
+cask "google-chrome"
+cask "google-cloud-sdk"
+cask "iterm2"
+cask "rubymine"
+cask "sequel-ace"
+cask "slack"
+cask "spotify"
+cask "sublime-text"
+cask "visual-studio-code"
+cask "zoom"
+mas "GarageBand", id: 682658836
+mas "iMovie", id: 408981434
+mas "Keynote", id: 409183694
+mas "LINE", id: 539883307
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
+mas "Xcode", id: 497799835

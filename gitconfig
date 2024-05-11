@@ -1,0 +1,24 @@
+# https://github.com/gggritso/dotfiles/blob/master/gitconfig.symlink
+[user]
+  email = takepro100pm@gmail.com
+  name = takepro14
+[core]
+  excludesfile = ~/.gitignore_global
+[alias]
+  co = !git branch | fzf | xargs git switch
+  unstage = reset HEAD
+  sw = switch
+  re = restore
+  br = branch
+  cm = commit
+  st = status
+  save = commit -m
+  resave = commit --amend -m
+  hashes = log --no-merges --date=short --pretty='format:%C(yellow)%h %C(green)%cd %C(blue)%an%C(red)%d %C(reset)%s'
+  graph = log --graph -10 --branches --remotes --tags  --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %ar) %Cred%d' --date-order
+  prestage = diff -w
+  branches = branch -a
+  stashes = stash list
+  hub = browse
+[commit]
+  template = ~/.gitmessage
