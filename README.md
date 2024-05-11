@@ -2,12 +2,12 @@
 
 ## Installation
 
-```
-zsh -c "$(curl -s https://raw.githubusercontent.com/takepro14/dotfiles/main/setup/install.zsh)"
+```sh
+zsh -c "$(gh api /repos/takepro14/dotfiles/contents/setup/install.zsh | jq -r '.download_url' | xargs curl -s)"
 ```
 
 ## Uninstallation
 
-```
+```sh
 cd ~/.dotfiles && ./setup/uninstall.zsh
 ```
