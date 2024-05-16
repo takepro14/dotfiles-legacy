@@ -30,7 +30,9 @@ alias load='set -a; source ./.env; set +a;'
 alias reload='source ~/.zshrc'
 alias repo='cd $(ghq list -p | fzf)'
 alias pullreq='gh pr view --web'
+alias repository='gh repo view --web'
 alias -g C='| wc -l'
+alias paths="echo ${PATH} | tr ':' '\n'"
 
 mkcd() {
   mkdir -p $1 && cd $_;
@@ -90,11 +92,10 @@ alias dat='docker attach $(DC)'
 alias drm='docker rm $(docker ps -aq)'
 alias drmi='docker rmi $(docker images -f "dangling=true" -q)'
 alias drmv='docker volume rm $(docker volume ls -qf dangling=true)'
+alias build='docker-compose build --no-cache'
 alias up='docker-compose up'
 alias down='docker-compose down'
-alias build='docker-compose build --no-cache'
 alias restart='docker-compose restart'
-alias attach='docker attach $(docker ps | grep app-1 | cut -c1-3)'
 
 # Kubernetes
 alias -g KP='$(kubectl get pods | fzf | awk "{print \$1}")'
@@ -192,4 +193,3 @@ proxy() {
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
