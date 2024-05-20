@@ -77,6 +77,7 @@ zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
+bindkey -e  # enable emacs style key bind
 
 # Neovim
 alias vim='nvim'
@@ -172,23 +173,12 @@ gauth() {
   gcloud auth print-access-token
 }
 
-notify() {
-  local account=$(gcloud config get core/account)
-  local ip=$(gip)
-  curl -X POST -H 'Content-type: application/json' --data "{
-    \"text\": \"${account}\n_${ip}_\"
-  }" $SLACK_URL > /dev/null 2>&1
-}
-
 proxy() {
   INSTANCE_CONNECTION_NAME=`
     gcloud sql instances list --format 'value(name)' \
       | fzf \
       | xargs gcloud sql instances describe --format 'value(connectionName)'
   `
-  notify
-  ~/cloud_sql_proxy -instances=$INSTANCE_CONNECTION_NAME=tcp:3306 \
-                    -credential_file=$GOOGLE_APPLICATION_CREDENTIALS
 }
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
