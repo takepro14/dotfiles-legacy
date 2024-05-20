@@ -1,2 +1,5 @@
 .netrwhist
 lazy-lock.json
+
+# ignore tmux-client-*.log
+*.log
