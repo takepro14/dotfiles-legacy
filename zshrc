@@ -179,6 +179,8 @@ proxy() {
       | fzf \
       | xargs gcloud sql instances describe --format 'value(connectionName)'
   `
+  ~/cloud_sql_proxy -instances=$INSTANCE_CONNECTION_NAME=tcp:3306 \
+                    -credential_file=$GOOGLE_APPLICATION_CREDENTIALS
 }
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
