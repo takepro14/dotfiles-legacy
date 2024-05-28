@@ -8,16 +8,7 @@ return {
     "uga-rosa/cmp-dictionary",
     event = "InsertEnter",
     opts = {
-      paths = { vim.fn.stdpath("data") .. "/dictionary/en.dict" },
-    },
-  },
-  {
-    "okuuva/auto-save.nvim",
-    event = { "InsertLeave", "TextChanged" },
-    opts = {
-      execution_message = {
-        enabled = false,
-      },
+      paths = { "/usr/share/dict/words" },
     },
   },
   {

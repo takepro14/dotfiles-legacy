@@ -9,4 +9,3 @@ return {
     { "<leader>fh", "<cmd>Telescope help_tags<CR>",  {} }
   }
 }
-

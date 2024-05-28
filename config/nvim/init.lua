@@ -1,5 +1,4 @@
 vim.loader.enable()
--- leaderキーをspaceに変更
 vim.g.mapleader = " "
 require("core.options")
 require("core.lazy")

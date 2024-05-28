@@ -15,8 +15,6 @@ local function opts(desc)
   return { desc = desc, noremap = true, silent = true }
 end
 
-vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true })
-
 local default_opts = { silent = true, noremap = true }
 -- コメントアウト
 vim.keymap.set("n", "gc", "<Leader>/", default_opts)
