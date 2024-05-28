@@ -15,7 +15,7 @@ zplug load
 
 # zsh generic config
 export GOOGLE_APPLICATION_CREDENTIALS=~/.ssh/xxxxxx.json
-export LANG=ja_JP.UTF-8
+export LANG=en_US.UTF-8
 export EDITOR=nvim
 export XDG_CONFIG_HOME=~/.config
 export PURE_PROMPT_SYMBOL="$" # pure theme
@@ -53,6 +53,11 @@ gip() {
 
 ipv4() {
   ifconfig | grep -Eo "inet (addr:)?([0-9]*\.){3}[0-9]*" | grep -Eo "([0-9]*\.){3}[0-9]*" | grep -v "127.0.0.1"
+}
+
+lh() {
+  local target=$1
+  open http://localhost:3000/$target
 }
 
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
