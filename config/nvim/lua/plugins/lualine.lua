@@ -11,7 +11,7 @@ return {
         lualine_a = { 'mode' },
         lualine_b = { 'branch' },
         lualine_c = { 'diff' },
-        lualine_x = { 'searchcount' },
+        lualine_x = { 'diagnostics' },
         lualine_y = { 'encoding' },
         lualine_z = { 'progress' }
       }
