@@ -16,43 +16,14 @@ local function opts(desc)
 end
 
 local default_opts = { silent = true, noremap = true }
--- コメントアウト
-vim.keymap.set("n", "gc", "<Leader>/", default_opts)
---ESCで点滅が消える
 vim.keymap.set("n", "<ESC>", "<CMD>nohlsearch<CR><ESC>", opts("No highlight search"))
 vim.keymap.set("t", "<ESC>", [[<C-\><C-n>]], opts("Exit the terminal"))
---tabを使用する
-vim.keymap.set("i", "<Leader><tab>", "<C-v><tab>", opts("tab"))
--- 論理行を表示行に置き換える
+vim.keymap.set("i", "<tab>", "<C-v><tab>", opts("tab"))
 vim.keymap.set("n", "k", "gk", default_opts)
 vim.keymap.set("n", "j", "gj", default_opts)
 vim.keymap.set("n", "0", "g0", default_opts)
 vim.keymap.set("n", "^", "g^", default_opts)
 vim.keymap.set("n", "$", "g$", default_opts)
--- ビジュアルモードで < > キーによるインデント後にビジュアルモードが解除されないようにする
-vim.keymap.set("v", "<", "<gv", default_opts)
-vim.keymap.set("v", ">", ">gv", default_opts)
--- コマンドで削除した時はヤンクしない
-vim.keymap.set("n", "x", '"_x', default_opts)
-vim.keymap.set("v", "x", '"_x', default_opts)
--- バッファサイズの変更
-vim.keymap.set("n", "<Up>", "<cmd>resize -1<CR>", opts("Resize UP"))
-vim.keymap.set("n", "<Down>", "<cmd>resize +1<CR>", opts("Resize Down"))
-vim.keymap.set("n", "<Left>", "<cmd>vertical resize -1<CR>", opts("Resize Left"))
-vim.keymap.set("n", "<Right>", "<cmd>vertical resize +1<CR>", opts("Resize Right"))
--- バッファ間のカーソルの移動
-vim.keymap.set("n", "<Leader>w", "<C-w>", opts("<C-w> shortcut"))
-vim.keymap.set("n", "<Leader>j", "<C-w>j", opts("Move buffer to the Down"))
-vim.keymap.set("n", "<Leader>k", "<C-w>k", opts("move buffer to the Up"))
-vim.keymap.set("n", "<Leader>h", "<C-w>h", opts("Move buffer to the Left"))
-vim.keymap.set("n", "<Leader>l", "<C-w>l", opts("Move buffe to the Right"))
--- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
-vim.keymap.set("n", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
-vim.keymap.set("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
-vim.keymap.set("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
-vim.keymap.set("n", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
-vim.keymap.set("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
-vim.keymap.set("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
 
 -- LSP
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts("Next diagnostic"))
