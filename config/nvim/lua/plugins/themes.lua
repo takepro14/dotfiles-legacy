@@ -1,7 +1,7 @@
 return {
   {
     "Mofiqul/dracula.nvim",
-    lazy = true
+    lazy = true,
   },
   {
     "ellisonleao/gruvbox.nvim",
@@ -74,7 +74,7 @@ return {
         comments = { italic = false },
         keywords = { italic = false },
         sidebars = "dark", -- style for sidebars, see below
-        floats = "dark", -- style for floating windows
+        floats = "dark",   -- style for floating windows
       },
     },
   },
