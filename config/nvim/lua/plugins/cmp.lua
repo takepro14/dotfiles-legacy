@@ -11,7 +11,7 @@ return {
   },
   config = function()
     local cmp = require("cmp")
-    local luasnip = require("luasnip")
+    -- local luasnip = require("luasnip")
     cmp.setup({
       window = {
         completion = cmp.config.window.bordered({
@@ -23,11 +23,11 @@ return {
           border = "rounded",
         }),
       },
-      snippet = {
-        expand = function(args)
-          luasnip.lsp_expand(args.body)
-        end,
-      },
+      -- snippet = {
+      --   expand = function(args)
+      --     luasnip.lsp_expand(args.body)
+      --   end,
+      -- },
       formatting = {
         format = require("lspkind").cmp_format({
           preset = "codicons",
@@ -48,8 +48,8 @@ return {
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
-          elseif luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
+            -- elseif luasnip.expand_or_jumpable() then
+            --   luasnip.expand_or_jump()
           else
             fallback()
           end
@@ -57,8 +57,8 @@ return {
         ["<S-Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
-          elseif luasnip.jumpable(-1) then
-            luasnip.jump(-1)
+            -- elseif luasnip.jumpable(-1) then
+            --   luasnip.jump(-1)
           else
             fallback()
           end
@@ -66,7 +66,7 @@ return {
       },
       sources = {
         { name = "nvim_lsp" },
-        { name = "luasnip" },
+        -- { name = "luasnip" },
         { name = "nvim_lua" },
         { name = "path" },
         { name = "dictionary", keyword_length = 2 },
