@@ -30,7 +30,7 @@ alias load='set -a; source ./.env; set +a;'
 alias reload='source ~/.zshrc'
 alias repo='cd $(ghq list -p | fzf)'
 alias pullreq='gh pr view --web'
-alias repository='gh repo view --web'
+alias ghrepo='gh repo view --web'
 alias -g C='| wc -l'
 alias paths="echo ${PATH} | tr ':' '\n'"
 
