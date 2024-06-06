@@ -24,6 +24,7 @@ setopt auto_cd
 setopt auto_pushd
 setopt nobeep
 setopt complete_aliases
+alias ls='ls -G'
 alias ll='ls -lG'
 alias la='ls -laG'
 alias load='set -a; source ./.env; set +a;'
@@ -137,7 +138,7 @@ cleanup() {
 # Node.js
 alias ns="npm ls -g --depth=0"
 export PATH="$HOME/.nodenv/bin:$PATH"
-eval "$(nodenv init -)"
+# eval "$(nodenv init -)"
 
 
 # Google Cloud Platform
