@@ -1,5 +1,6 @@
 local opt = vim.opt
 opt.number = true
+opt.confirm = true
 opt.title = true
 opt.cmdheight = 0
 opt.termguicolors = true
