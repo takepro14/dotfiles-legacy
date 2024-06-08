@@ -1,17 +1,40 @@
 return {
   'nvim-treesitter/nvim-treesitter',
-  run = ':TSUpdate',
+  build = ':TSUpdate',
   config = function()
     require('nvim-treesitter.configs').setup {
-      ensure_installed = { "ruby" },
-      highlight = {
-        enable = true,
+      ensure_installed = {
+        "bash",
+        "c",
+        "css",
+        "dockerfile",
+        "git_config",
+        "gitcommit",
+        "gitignore",
+        "go",
+        "html",
+        "javascript",
+        "json",
+        "lua",
+        "python",
+        "query",
+        "rbs",
+        "ruby",
+        "rust",
+        "scala",
+        "scss",
+        "sql",
+        "terraform",
+        "tmux",
+        "typescript",
+        "vim",
+        "vimdoc",
+        "vue",
+        "yaml",
       },
-      query_linter = {
-        enable = true,
-        use_virtual_text = true,
-        lint_events = { "BufWrite", "CursorHold" },
-      },
+      sync_install = true,
+      highlight = { enable = true },
+      indent = { enable = true },
     }
   end
 }
