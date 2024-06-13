@@ -99,10 +99,10 @@ alias dat='docker attach $(DC)'
 alias drm='docker rm -vf $(docker ps -aq)'
 alias drmi='docker rmi $(docker images -f "dangling=true" -q)'
 alias drmv='docker volume rm $(docker volume ls -qf dangling=true)'
-alias build='docker-compose build --no-cache'
-alias up='docker-compose up'
-alias down='docker-compose down'
-alias restart='docker-compose restart'
+alias dcbuild='docker-compose build --no-cache'
+alias dcup='docker-compose up'
+alias dcdown='docker-compose down'
+alias dcrestart='docker-compose restart'
 
 # Kubernetes
 alias -g KP='$(kubectl get pods | fzf | awk "{print \$1}")'
@@ -135,10 +135,12 @@ cleanup() {
   docker volume rm $(docker volume ls -q -f name=redis-data | fzf)
 }
 
+eval "$(rbenv init - zsh)"
+
 # Node.js
 alias ns="npm ls -g --depth=0"
 export PATH="$HOME/.nodenv/bin:$PATH"
-# eval "$(nodenv init -)"
+eval "$(nodenv init -)"
 
 
 # Google Cloud Platform
