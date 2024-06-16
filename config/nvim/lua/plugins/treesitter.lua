@@ -32,7 +32,6 @@ return {
         "vue",
         "yaml",
       },
-      sync_install = true,
       highlight = { enable = true },
       indent = { enable = true },
     }
