@@ -62,6 +62,7 @@ return {
       capabilities = capabilities,
       single_file_support = false,
     })
+    lspconfig.ruby_lsp.setup({ capabilities = capabilities })
     lspconfig.rust_analyzer.setup({
       capabilities = capabilities,
       settings = {
