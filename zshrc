@@ -25,8 +25,8 @@ setopt auto_pushd
 setopt nobeep
 setopt complete_aliases
 alias ls='ls -G'
-alias ll="ls -lG -D '%Y-%m-%d %H:%M'"
-alias la="ls -laG -D '%Y-%m-%d %H:%M'"
+alias ll="ls -lG -D '%y-%m-%d %H:%M'"
+alias la="ls -laG -D '%y-%m-%d %H:%M'"
 alias load='set -a; source ./.env; set +a;'
 alias reload='source ~/.zshrc'
 alias repo='cd $(ghq list -p | fzf)'
