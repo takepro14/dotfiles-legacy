@@ -14,11 +14,10 @@ fi
 zplug load
 
 # zsh generic config
-export GOOGLE_APPLICATION_CREDENTIALS=~/.ssh/xxxxxx.json
 export LANG=en_US.UTF-8
 export EDITOR=nvim
 export XDG_CONFIG_HOME=~/.config
-export PURE_PROMPT_SYMBOL="$" # pure theme
+export PURE_PROMPT_SYMBOL="$"
 export FZF_DEFAULT_OPTS='--height 20% --reverse'
 setopt auto_cd
 setopt auto_pushd
@@ -61,11 +60,9 @@ lh() {
   open http://localhost:3000/$target
 }
 
-alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 g() {
-  local url='https://google.co.jp/search?q='
-  url+=$(printf "%s+" "$@")
-  chrome "${url%+}"
+  local url="https://google.co.jp/search?q=$*"
+  /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome "$url"
 }
 
 # zsh history
