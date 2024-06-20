@@ -10,10 +10,10 @@ return {
       sections = {
         lualine_a = { 'mode' },
         lualine_b = { 'branch' },
-        lualine_c = { 'diff' },
+        lualine_c = { 'filename', 'diff' },
         lualine_x = { 'diagnostics' },
         lualine_y = { 'encoding' },
-        lualine_z = { 'progress' }
+        lualine_z = { 'location' }
       }
     }
   end
