@@ -18,7 +18,10 @@ return {
     telescope.setup({
       telescope.load_extension("live_grep_args"),
       defaults = {
-        file_ignore_patterns = { ".git/" }
+        file_ignore_patterns = {
+          ".git/",
+          "node_modules/"
+        }
       },
       pickers = {
         find_files = {
