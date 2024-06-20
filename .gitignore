@@ -1,4 +1,2 @@
 .netrwhist
-
-# ignore tmux-client-*.log
 *.log
