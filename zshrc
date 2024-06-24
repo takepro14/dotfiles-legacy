@@ -116,7 +116,6 @@ export GOPATH=$HOME/go
 
 # Ruby
 alias rubocop='docker compose run --rm app bundle exec rubocop -a'
-
 alias rspec='docker compose run --rm -e "RAILS_ENV=test" app bundle exec rspec'
 alias console='docker compose run --rm app bin/rails c'
 alias consolet='docker compose run --rm -e "RAILS_ENV=test" app bin/rails c'
@@ -138,7 +137,6 @@ eval "$(rbenv init - zsh)"
 alias ns="npm ls -g --depth=0"
 export PATH="$HOME/.nodenv/bin:$PATH"
 eval "$(nodenv init -)"
-
 
 # Google Cloud Platform
 source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
