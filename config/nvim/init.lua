@@ -40,8 +40,8 @@ vim.cmd('highlight CmpDocumentationBorder guibg=NONE ctermbg=NONE')
 vim.api.nvim_create_autocmd("User", {
   pattern = "VeryLazy",
   callback = function()
-    require("core.autocmd")
-    require("core.keymap")
+    require("core.autocmds")
+    require("core.keymaps")
     require("core.lsp")
   end,
 })
