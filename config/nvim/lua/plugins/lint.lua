@@ -6,7 +6,7 @@ return {
       ["*"] = { "codespell" },
       c = { "clangtidy" },
       python = { "ruff", "mypy", "pylint" },
-      javascript = { "eslint" },
+      -- javascript = { "eslint" },
       css = { "stylelint" },
       cmake = { "cmakelint" },
       markdown = { "markdownlint" },
