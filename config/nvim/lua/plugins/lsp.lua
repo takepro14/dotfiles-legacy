@@ -85,93 +85,6 @@ return {
       }
     end
   },
-  -- Completion engine
-  {
-    "hrsh7th/nvim-cmp",
-    event = { "InsertEnter", "CmdlineEnter" },
-    dependencies = {
-      "onsails/lspkind.nvim",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-cmdline",
-      "saadparwaiz1/cmp_luasnip",
-      "hrsh7th/cmp-nvim-lsp-signature-help",
-    },
-    config = function()
-      local cmp = require("cmp")
-      cmp.setup({
-        window = {
-          completion = cmp.config.window.bordered({
-            completeopt = "menu,menuone,preview",
-            border = "rounded",
-            winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
-          }),
-          documentation = cmp.config.window.bordered({
-            border = "rounded",
-          }),
-        },
-        formatting = {
-          format = require("lspkind").cmp_format({
-            preset = "codicons",
-            maxwidth = 50,
-            ellipsis_char = "...",
-          }),
-        },
-        mapping = {
-          ["<C-k>"] = cmp.mapping.select_prev_item(),
-          ["<C-j>"] = cmp.mapping.select_next_item(),
-          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-          ["<C-f>"] = cmp.mapping.scroll_docs(4),
-          ["<C-Space>"] = cmp.mapping.abort(),
-          ["<CR>"] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = false,
-          }),
-          ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item()
-            else
-              fallback()
-            end
-          end, { "i", "s" }),
-          ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_prev_item()
-            else
-              fallback()
-            end
-          end, { "i", "s" }),
-        },
-        sources = {
-          { name = "nvim_lsp" },
-          { name = "nvim_lua" },
-          { name = "path" },
-          { name = "dictionary", keyword_length = 2 },
-        },
-      })
-
-      -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-      cmp.setup.cmdline({ "/", "?" }, {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = {
-          { name = "buffer" },
-        },
-      })
-      -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-      cmp.setup.cmdline(":", {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = cmp.config.sources({
-          { name = "path" },
-        }, {
-          { name = "cmdline" },
-        }),
-      })
-
-      cmp.event:on("confirm_done", function()
-        require("nvim-autopairs.completion.cmp").on_confirm_done()
-      end)
-    end,
-  },
   {
     "glepnir/lspsaga.nvim",
     event = "LspAttach",
@@ -212,6 +125,34 @@ return {
       { "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>", { silent = true } },
       -- Float terminal
       { "<Leader>i",  "<cmd>Lspsaga term_toggle<CR>",    { mode = { "n", "t" }, silent = true } },
+    },
+  },
+  {
+    "ray-x/lsp_signature.nvim",
+    event = "LspAttach",
+    opts = {
+      bind = true,
+      handler_opts = {
+        border = "rounded",
+      },
+      hint_enable = false,
+      toggle_key = "<C-k>",
+      select_signature_key = "<C-n>",
+      floating_window_off_x = 5,       -- adjust float windows x position.
+      floating_window_off_y = function() -- adjust float windows y position. e.g. set to -2 can make floating window move up 2 lines
+        local pumheight = vim.o.pumheight
+        local winline = vim.fn.winline() -- line number in the window
+        local winheight = vim.fn.winheight(0)
+        -- window top
+        if winline - 1 < pumheight then
+          return pumheight
+        end
+        -- window bottom
+        if winheight - winline < pumheight then
+          return -pumheight
+        end
+        return 0
+      end,
     },
   }
 }
