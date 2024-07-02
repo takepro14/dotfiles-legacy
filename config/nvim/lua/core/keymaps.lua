@@ -24,6 +24,10 @@ vim.keymap.set("n", "j", "gj", default_opts)
 vim.keymap.set("n", "0", "g0", default_opts)
 vim.keymap.set("n", "^", "g^", default_opts)
 vim.keymap.set("n", "$", "g$", default_opts)
+vim.keymap.set("i", "<C-f>", "<Right>")
+vim.keymap.set("i", "<C-b>", "<Left>")
+vim.keymap.set("i", "<C-h>", "<BS>")
+vim.keymap.set("i", "<C-d>", "<Del>")
 
 -- LSP
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts("Next diagnostic"))
