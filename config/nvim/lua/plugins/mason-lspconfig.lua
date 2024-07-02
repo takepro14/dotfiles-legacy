@@ -8,7 +8,7 @@ return {
         "html",
         "cssls",
         "tsserver",
-        "ruby_lsp",
+        "solargraph",
         "pylsp",
         "gopls",
         "lua_ls",
