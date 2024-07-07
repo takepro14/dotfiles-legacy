@@ -16,6 +16,7 @@ local function opts(desc)
 end
 
 local default_opts = { silent = true, noremap = true }
+vim.keymap.set("i", "jj", "<ESC>")
 vim.keymap.set("n", "<ESC>", "<CMD>nohlsearch<CR><ESC>", opts("No highlight search"))
 vim.keymap.set("t", "<ESC>", [[<C-\><C-n>]], opts("Exit the terminal"))
 vim.keymap.set("i", "<tab>", "<C-v><tab>", opts("tab"))
