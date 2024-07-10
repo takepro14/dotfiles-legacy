@@ -28,6 +28,7 @@ vim.keymap.set("i", "<C-f>", "<Right>")
 vim.keymap.set("i", "<C-b>", "<Left>")
 vim.keymap.set("i", "<C-h>", "<BS>")
 vim.keymap.set("i", "<C-d>", "<Del>")
+vim.keymap.set("n", "<leader>*", "*''cgn")
 
 -- LSP
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts("Next diagnostic"))
