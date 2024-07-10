@@ -21,7 +21,12 @@ return {
         file_ignore_patterns = {
           ".git/",
           "node_modules/"
-        }
+        },
+        path_display = function(opts, path)
+          local tail = require("telescope.utils").path_tail(path)
+          local dirname = path:match("(.*)/" .. tail) or "."
+          return string.format("%s (%s)", tail, dirname)
+        end,
       },
       pickers = {
         find_files = {
