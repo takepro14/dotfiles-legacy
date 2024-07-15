@@ -20,7 +20,8 @@ return {
       defaults = {
         file_ignore_patterns = {
           ".git/",
-          "node_modules/"
+          "node_modules/",
+          "tmp/"
         },
         path_display = function(opts, path)
           local tail = require("telescope.utils").path_tail(path)
