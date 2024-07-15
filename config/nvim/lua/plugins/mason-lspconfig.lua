@@ -1,6 +1,8 @@
 return {
   -- Enables easy configuration of `nvim-lspconfig` in a `Mason` environment
   "williamboman/mason-lspconfig.nvim",
+  lazy = true,
+  event = { "CursorHold", "CursorHoldI" },
   config = function()
     -- Auto install
     require("mason-lspconfig").setup {

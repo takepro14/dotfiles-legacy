@@ -6,6 +6,7 @@ return {
     "nvim-telescope/telescope-live-grep-args.nvim",
     version = "^1.0.0"
   },
+  lazy = true,
   keys = {
     { "<leader>ff", "<cmd>Telescope find_files<CR>", {} },
     { "<leader>fg", "<cmd>Telescope live_grep<CR>",  {} },

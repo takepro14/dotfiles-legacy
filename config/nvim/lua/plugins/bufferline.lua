@@ -1,7 +1,8 @@
 return {
   "akinsho/bufferline.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
-  event = "VeryLazy",
+  lazy = true,
+  event = { "BufReadPost", "BufAdd", "BufNewFile" },
   opts = {
     options = {
       diagnostics = "nvim_lsp",

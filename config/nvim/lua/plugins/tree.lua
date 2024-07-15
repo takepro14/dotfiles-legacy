@@ -14,6 +14,7 @@ end
 return {
   "nvim-tree/nvim-tree.lua",
   dependencies = { "nvim-tree/nvim-web-devicons" },
+  lazy = true,
   keys = {
     { "<Leader>tt", "<cmd>NvimTreeToggle<CR>", { silent = true, desc = "NvimTreeToggle" } }
   },

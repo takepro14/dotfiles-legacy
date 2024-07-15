@@ -1,5 +1,6 @@
 return {
   "windwp/nvim-ts-autotag",
-  config = true,
+  lazy = true,
   event = "InsertEnter",
+  config = true,
 }
