@@ -19,6 +19,7 @@ return {
         "javascript",
         "json",
         "lua",
+        "markdown",
         "python",
         "query",
         "rbs",
