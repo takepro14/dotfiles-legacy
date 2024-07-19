@@ -57,8 +57,9 @@ ipv4() {
 }
 
 lh() {
-  local target=$1
-  open http://localhost:3000/$target
+  local port=$1
+  local target=$2
+  open http://localhost:$port/$target
 }
 
 g() {
