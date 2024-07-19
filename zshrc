@@ -44,7 +44,8 @@ uuid() {
 
 keygen() {
   local length=${1:-12}
-  echo "$(openssl rand -base64 $length)"
+  echo "$(openssl rand -base64 $length)" | pbcopy
+  echo "Copied to clipboard!"
 }
 
 gip() {
@@ -137,6 +138,7 @@ eval "$(rbenv init - zsh)"
 alias ns="npm ls -g --depth=0"
 export PATH="$HOME/.nodenv/bin:$PATH"
 eval "$(nodenv init -)"
+export PATH="$HOME/.nodenv/versions/$(nodenv version-name)/bin:$PATH"
 
 # Google Cloud Platform
 source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
