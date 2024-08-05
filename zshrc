@@ -23,6 +23,7 @@ setopt auto_cd
 setopt auto_pushd
 setopt nobeep
 setopt complete_aliases
+alias g='git'
 alias ls='ls -G'
 alias ll="ls -lG -D '%y-%m-%d %H:%M'"
 alias la="ls -laG -D '%y-%m-%d %H:%M'"
@@ -60,11 +61,6 @@ lh() {
   local port=$1
   local target=$2
   open http://localhost:$port/$target
-}
-
-g() {
-  local url="https://google.co.jp/search?q=$*"
-  /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome "$url"
 }
 
 # zsh history
