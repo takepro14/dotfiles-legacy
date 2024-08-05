@@ -57,12 +57,6 @@ ipv4() {
   ifconfig | grep -Eo "inet (addr:)?([0-9]*\.){3}[0-9]*" | grep -Eo "([0-9]*\.){3}[0-9]*" | grep -v "127.0.0.1"
 }
 
-lh() {
-  local port=$1
-  local target=$2
-  open http://localhost:$port/$target
-}
-
 # zsh history
 setopt share_history
 setopt hist_ignore_dups
