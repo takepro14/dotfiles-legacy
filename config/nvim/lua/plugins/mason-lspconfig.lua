@@ -5,7 +5,7 @@ return {
   event = { "CursorHold", "CursorHoldI" },
   config = function()
     -- Auto install
-    require("mason-lspconfig").setup {
+    require("mason-lspconfig").setup({
       ensure_installed = {
         "html",
         "cssls",
@@ -15,9 +15,8 @@ return {
         "gopls",
         "lua_ls",
         "apex_ls",
-        "marksman",
-      }
-    }
+      },
+    })
     -- Capabilities that LSP clients want the LSP server to provide
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
     capabilities.offsetEncoding = { "utf-16" }
@@ -43,10 +42,10 @@ return {
       },
     }
     -- Setup handlers for installed all LSP servers
-    require("mason-lspconfig").setup_handlers {
+    require("mason-lspconfig").setup_handlers({
       function(server_name)
-        require("lspconfig")[server_name].setup { capabilities = capabilities }
+        require("lspconfig")[server_name].setup({ capabilities = capabilities })
       end,
-    }
-  end
+    })
+  end,
 }
