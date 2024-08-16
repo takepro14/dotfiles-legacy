@@ -34,6 +34,9 @@ alias pullreq='gh pr view --web'
 alias ghrepo='gh repo view --web'
 alias -g C='| wc -l'
 alias paths="echo ${PATH} | tr ':' '\n'"
+alias ...='../../'
+alias ....='../../../'
+alias .....='../../../../'
 
 mkcd() {
   mkdir -p $1 && cd $_;
