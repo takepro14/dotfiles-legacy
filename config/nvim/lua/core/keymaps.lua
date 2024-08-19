@@ -15,21 +15,26 @@ local function opts(desc)
   return { desc = desc, noremap = true, silent = true }
 end
 
+-- Generic keymaps
 local default_opts = { silent = true, noremap = true }
-vim.keymap.set("i", "jj", "<ESC>")
-vim.keymap.set("t", "<ESC>", [[<C-\><C-n>]], opts("Exit the terminal"))
-vim.keymap.set("i", "<tab>", "<C-v><tab>", opts("tab"))
 vim.keymap.set("n", "k", "gk", default_opts)
 vim.keymap.set("n", "j", "gj", default_opts)
 vim.keymap.set("n", "0", "g0", default_opts)
 vim.keymap.set("n", "^", "g^", default_opts)
 vim.keymap.set("n", "$", "g$", default_opts)
-vim.keymap.set("i", "<C-f>", "<Right>")
-vim.keymap.set("i", "<C-b>", "<Left>")
-vim.keymap.set("i", "<C-h>", "<BS>")
-vim.keymap.set("i", "<C-d>", "<Del>")
+vim.keymap.set("i", "jj", "<ESC>")
+vim.keymap.set("i", "<tab>", "<C-v><tab>", opts("tab"))
+vim.keymap.set("i", "<C-a>", "<Home>", default_opts)
+vim.keymap.set("i", "<C-e>", "<End>", default_opts)
+vim.keymap.set("i", "<C-p>", "<Up>", default_opts)
+vim.keymap.set("i", "<C-n>", "<Down>", default_opts)
+vim.keymap.set("i", "<C-f>", "<Right>", default_opts)
+vim.keymap.set("i", "<C-b>", "<Left>", default_opts)
+vim.keymap.set("i", "<C-h>", "<BS>", default_opts)
+vim.keymap.set("i", "<C-d>", "<Del>", default_opts)
+vim.keymap.set("t", "<ESC>", [[<C-\><C-n>]], opts("Exit the terminal"))
 
--- LSP
+-- LSP keymaps
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts("Next diagnostic"))
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts("Pre diagnostic"))
 
