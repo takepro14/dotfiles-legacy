@@ -21,6 +21,7 @@ return {
       defaults = {
         file_ignore_patterns = {
           ".git/",
+	  ".dropbox.cache/",
           "node_modules/",
           "tmp/"
         },
