@@ -79,3 +79,12 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.formatoptions:append({ "M", "j" })
   end,
 })
+
+-- 末尾の空白を削除する
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  group = vim.api.nvim_create_augroup("TrimTrailingWhitespace", { clear = true }),
+  callback = function()
+    vim.cmd([[%s/\s\+$//e]])
+  end,
+})
