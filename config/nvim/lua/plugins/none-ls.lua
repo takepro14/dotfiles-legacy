@@ -9,7 +9,9 @@ return {
         null_ls.builtins.formatting.prettier.with({
           extra_args = { "--single-quote" },
         }),
-        null_ls.builtins.formatting.stylua,
+        null_ls.builtins.formatting.stylua.with({
+          extra_args = { "--quote-style", "AutoPreferSingle" },
+        }),
       },
       on_attach = function(client, bufnr)
         if client.supports_method("textDocument/formatting") then
