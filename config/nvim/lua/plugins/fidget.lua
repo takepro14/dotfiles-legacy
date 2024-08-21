@@ -1,6 +1,6 @@
 return {
-  "j-hui/fidget.nvim",
+  'j-hui/fidget.nvim',
   lazy = true,
-  event = "LspAttach",
+  event = 'LspAttach',
   config = true,
 }

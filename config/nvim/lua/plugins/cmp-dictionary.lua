@@ -1,8 +1,8 @@
 return {
-  "uga-rosa/cmp-dictionary",
+  'uga-rosa/cmp-dictionary',
   lazy = true,
-  event = "InsertEnter",
+  event = 'InsertEnter',
   opts = {
-    paths = { "/usr/share/dict/words" },
+    paths = { '/usr/share/dict/words' },
   },
 }

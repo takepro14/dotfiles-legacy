@@ -1,29 +1,29 @@
 return {
   -- Enables easy configuration of `nvim-lspconfig` in a `Mason` environment
-  "williamboman/mason-lspconfig.nvim",
+  'williamboman/mason-lspconfig.nvim',
   lazy = true,
-  event = { "CursorHold", "CursorHoldI" },
+  event = { 'CursorHold', 'CursorHoldI' },
   config = function()
     -- Auto install
-    require("mason-lspconfig").setup({
+    require('mason-lspconfig').setup({
       ensure_installed = {
-        "html",
-        "cssls",
-        "tsserver",
-        "solargraph",
-        "pylsp",
-        "gopls",
-        "lua_ls",
-        "apex_ls",
+        'html',
+        'cssls',
+        'tsserver',
+        'solargraph',
+        'pylsp',
+        'gopls',
+        'lua_ls',
+        'apex_ls',
       },
     })
     -- Capabilities that LSP clients want the LSP server to provide
-    local capabilities = require("cmp_nvim_lsp").default_capabilities()
-    capabilities.offsetEncoding = { "utf-16" }
+    local capabilities = require('cmp_nvim_lsp').default_capabilities()
+    capabilities.offsetEncoding = { 'utf-16' }
     capabilities.textDocument.completion.completionItem = {
       documentationFormat = {
-        "markdown",
-        "plaintext",
+        'markdown',
+        'plaintext',
       },
       preselectSupport = true,
       insertReplaceSupport = true,
@@ -35,16 +35,16 @@ return {
       },
       resolveSupport = {
         properties = {
-          "documentation",
-          "detail",
-          "additionalTextEdits",
+          'documentation',
+          'detail',
+          'additionalTextEdits',
         },
       },
     }
     -- Setup handlers for installed all LSP servers
-    require("mason-lspconfig").setup_handlers({
+    require('mason-lspconfig').setup_handlers({
       function(server_name)
-        require("lspconfig")[server_name].setup({ capabilities = capabilities })
+        require('lspconfig')[server_name].setup({ capabilities = capabilities })
       end,
     })
   end,

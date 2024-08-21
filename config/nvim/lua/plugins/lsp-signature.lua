@@ -1,14 +1,14 @@
 return {
-  "ray-x/lsp_signature.nvim",
+  'ray-x/lsp_signature.nvim',
   lazy = true,
-  event = "LspAttach",
+  event = 'LspAttach',
   opts = {
     bind = true,
     handler_opts = {
-      border = "rounded",
+      border = 'rounded',
     },
     hint_enable = false,
-    toggle_key = "<C-k>",
+    toggle_key = '<C-k>',
     -- TODO: Assign new key or delete
     -- select_signature_key = "<C-n>",
     floating_window_off_x = 5,         -- adjust float windows x position.

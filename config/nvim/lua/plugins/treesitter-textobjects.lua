@@ -1,5 +1,5 @@
 return {
-  "nvim-treesitter/nvim-treesitter-textobjects",
+  'nvim-treesitter/nvim-treesitter-textobjects',
   lazy = true,
-  event = "CursorMoved",
+  event = 'CursorMoved',
 }

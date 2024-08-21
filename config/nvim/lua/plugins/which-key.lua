@@ -1,6 +1,6 @@
 return {
-  "folke/which-key.nvim",
+  'folke/which-key.nvim',
   lazy = true,
-  cmd = "WhichKey",
+  cmd = 'WhichKey',
   config = true,
 }

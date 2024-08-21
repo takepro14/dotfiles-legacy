@@ -1,9 +1,9 @@
 return {
   -- Package manager for LSP servers, DAP servers, linters, and formatters
-  "williamboman/mason.nvim",
+  'williamboman/mason.nvim',
   lazy = true,
-  event = { "CursorHold", "CursorHoldI" },
+  event = { 'CursorHold', 'CursorHoldI' },
   config = function()
-    require("mason").setup()
-  end
+    require('mason').setup()
+  end,
 }

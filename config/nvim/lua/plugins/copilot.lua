@@ -1,5 +1,5 @@
 return {
-  "github/copilot.vim",
+  'github/copilot.vim',
   lazy = true,
-  event = "InsertEnter",
+  event = 'InsertEnter',
 }

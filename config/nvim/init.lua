@@ -1,8 +1,8 @@
 vim.loader.enable()
-vim.g.mapleader = " "
-require("core.options")
-require("core.lazy")
-vim.cmd.colorscheme("dracula")
+vim.g.mapleader = ' '
+require('core.options')
+require('core.lazy')
+vim.cmd.colorscheme('dracula')
 
 vim.cmd('highlight Normal guibg=NONE ctermbg=NONE')
 vim.cmd('highlight NonText guibg=NONE ctermbg=NONE')
@@ -37,11 +37,11 @@ vim.cmd('highlight CmpPmenuThumb guibg=NONE ctermbg=NONE')
 vim.cmd('highlight CmpDocumentation guibg=NONE ctermbg=NONE')
 vim.cmd('highlight CmpDocumentationBorder guibg=NONE ctermbg=NONE')
 
-vim.api.nvim_create_autocmd("User", {
-  pattern = "VeryLazy",
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'VeryLazy',
   callback = function()
-    require("core.autocmds")
-    require("core.keymaps")
-    require("core.lsp")
+    require('core.autocmds')
+    require('core.keymaps')
+    require('core.lsp')
   end,
 })
