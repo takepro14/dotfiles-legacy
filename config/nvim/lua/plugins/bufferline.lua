@@ -9,8 +9,8 @@ return {
     },
   },
   keys = {
-    { '<Tab>',     '<cmd>BufferLineCycleNext<CR>', { silent = true, noremap = true, desc = 'Buffer Next' } },
-    { '<S-Tab>',   '<cmd>BufferLineCyclePrev<CR>', { silent = true, noremap = true, desc = 'Buffer Prev' } },
+    { '<leader>n', '<cmd>BufferLineCycleNext<CR>', { silent = true, noremap = true, desc = 'Buffer Next' } },
+    { '<leader>p', '<cmd>BufferLineCyclePrev<CR>', { silent = true, noremap = true, desc = 'Buffer Prev' } },
     { '<leader>w', ':bdelete<CR>',                 { silent = true, noremap = true } },
   },
 }
