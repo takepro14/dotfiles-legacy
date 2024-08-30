@@ -89,12 +89,17 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   end,
 })
 
--- markdownのタブをスペース2つにする (デフォルト値の4つをオーバーライド)
+-- Markdown向けの編集設定
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'markdown',
   callback = function()
+    -- タブをスペース2つにする (デフォルト値の4つをオーバーライド)
     vim.opt_local.tabstop = 2
     vim.opt_local.shiftwidth = 2
     vim.opt_local.expandtab = true
+    -- 改行時のbullet引き継ぎなど
+    vim.opt_local.comments = { 'b:*', 'b:-', 'b:+', 'b:1.', 'nb:>' }
+    vim.opt_local.formatoptions:remove('c')
+    vim.opt_local.formatoptions:append('jro')
   end,
 })
