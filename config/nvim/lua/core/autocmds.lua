@@ -101,5 +101,8 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.opt_local.comments = { 'b:*', 'b:-', 'b:+', 'b:1.', 'nb:>' }
     vim.opt_local.formatoptions:remove('c')
     vim.opt_local.formatoptions:append('jro')
+    -- インサートモードでのインデントを可能にする
+    vim.api.nvim_set_keymap('i', '>>', '<Esc>>>A', { noremap = true })
+    vim.api.nvim_set_keymap('i', '<<', '<Esc><<A', { noremap = true })
   end,
 })
