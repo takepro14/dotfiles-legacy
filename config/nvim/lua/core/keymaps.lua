@@ -31,7 +31,7 @@ vim.keymap.set('i', '<C-f>', '<Right>', default_opts)
 vim.keymap.set('i', '<C-b>', '<Left>', default_opts)
 vim.keymap.set('i', '<C-h>', '<BS>', default_opts)
 vim.keymap.set('i', '<C-d>', '<Del>', default_opts)
-vim.keymap.set('t', '<ESC>', [[<C-\><C-n>]], opts('Exit the terminal'))
+vim.keymap.set('t', 'jj', [[<C-\><C-n>]], opts('Exit the terminal'))
 
 -- LSP keymaps
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts('Next diagnostic'))
