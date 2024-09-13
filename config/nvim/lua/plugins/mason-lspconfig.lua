@@ -9,7 +9,7 @@ return {
       ensure_installed = {
         'html',
         'cssls',
-        'tsserver',
+        'ts_ls',
         'solargraph',
         'pylsp',
         'gopls',
