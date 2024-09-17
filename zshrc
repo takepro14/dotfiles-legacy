@@ -81,7 +81,7 @@ bindkey -e  # enable emacs style key bind
 alias vim='nvim'
 
 # tmux
-alias ide="sh ~/.dotfiles/tmux.sh"
+alias ide=$HOME/.dotfiles/tmux.sh
 
 # Git
 eval "$(hub alias -s)"
