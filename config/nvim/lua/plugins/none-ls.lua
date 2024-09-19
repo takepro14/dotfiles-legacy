@@ -12,6 +12,9 @@ return {
         null_ls.builtins.formatting.stylua.with({
           extra_args = { '--quote-style', 'AutoPreferSingle' },
         }),
+        null_ls.builtins.formatting.clang_format.with({
+          filetypes = { 'c', 'cpp', 'objc', 'objcpp' },
+        }),
       },
       on_attach = function(client, bufnr)
         if client.supports_method('textDocument/formatting') then

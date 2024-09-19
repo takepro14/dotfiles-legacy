@@ -15,6 +15,7 @@ return {
         'gopls',
         'lua_ls',
         'apex_ls',
+        'clangd',
       },
     })
     -- Capabilities that LSP clients want the LSP server to provide
