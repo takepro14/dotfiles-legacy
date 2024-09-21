@@ -25,7 +25,7 @@ return {
           'node_modules/',
           'tmp/',
         },
-        path_display = function(opts, path)
+        path_display = function(_, path)
           local tail = require('telescope.utils').path_tail(path)
           local dirname = path:match('(.*)/' .. tail) or '.'
           return string.format('%s (%s)', tail, dirname)
