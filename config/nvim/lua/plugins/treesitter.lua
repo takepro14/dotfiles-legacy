@@ -20,6 +20,7 @@ return {
         'json',
         'lua',
         'markdown',
+        'php',
         'python',
         'query',
         'rbs',
