@@ -6,6 +6,7 @@
   excludesfile = ~/.gitignore_global
 [alias]
   co = !git branch | fzf | xargs git switch
+  rmb = !git branch | fzf | xargs git branch -D
   unstage = reset HEAD
   sw = switch
   re = restore
