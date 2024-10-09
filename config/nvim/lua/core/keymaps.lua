@@ -33,6 +33,15 @@ vim.keymap.set('i', '<C-h>', '<BS>', default_opts)
 vim.keymap.set('i', '<C-d>', '<Del>', default_opts)
 vim.keymap.set('t', 'jj', [[<C-\><C-n>]], opts('Exit the terminal'))
 
+-- Functional keymaps
+vim.keymap.set('i', '<C-l>', function()
+  local line = vim.fn.getline('.')
+  local col = vim.fn.getpos('.')[3]
+  local substring = line:sub(1, col - 1)
+  local result = vim.fn.matchstr(substring, [[\v<(\k(<)@!)*$]])
+  return '<C-w>' .. result:upper()
+end, { expr = true })
+
 -- LSP keymaps
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts('Next diagnostic'))
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts('Pre diagnostic'))
