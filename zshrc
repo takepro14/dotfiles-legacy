@@ -184,5 +184,8 @@ proxy() {
                     -credential_file=$GOOGLE_APPLICATION_CREDENTIALS
 }
 
+# acc
+alias abc=$HOME/.dotfiles/acc.sh
+
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
