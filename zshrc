@@ -60,6 +60,10 @@ ipv4() {
   ifconfig | grep -Eo "inet (addr:)?([0-9]*\.){3}[0-9]*" | grep -Eo "([0-9]*\.){3}[0-9]*" | grep -v "127.0.0.1"
 }
 
+til() {
+  find ~/ghq/github.com/takepro14/til \( -type d -name node_modules -o -type d -name .git \) -prune -o -type f | sort | fzf | xargs -I {} code "{}"
+}
+
 # zsh history
 setopt share_history
 setopt hist_ignore_dups
