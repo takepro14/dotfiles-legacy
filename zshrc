@@ -31,12 +31,34 @@ alias load='set -a; source ./.env; set +a;'
 alias reload='source ~/.zshrc'
 alias repo='cd $(ghq list -p | fzf)'
 alias pullreq='gh pr view --web'
-alias ghrepo='gh repo view --web $(ghq list -p | fzf | xargs basename)'
-alias til='find ~/ghq/github.com/takepro14/til \( -type d -name node_modules -o -type d -name .git \) -prune -o -type f | sort | fzf --height 80% | xargs -I {} code "{}"'
+alias ghrepo='gh repo view --web'
+alias paths="echo ${PATH} | tr ':' '\n'"
 alias -g C='| wc -l'
 alias ...='../../'
 alias ....='../../../'
 alias .....='../../../../'
+
+mkcd() {
+  mkdir -p $1 && cd $_;
+}
+
+uuid() {
+  uuidgen | tr \[:upper:\] \[:lower:\]
+}
+
+keygen() {
+  local length=${1:-12}
+  echo "$(openssl rand -base64 $length)" | pbcopy
+  echo "Copied!"
+}
+
+gip() {
+  curl -s http://checkip.amazonaws.com
+}
+
+ipv4() {
+  ifconfig | grep -Eo "inet (addr:)?([0-9]*\.){3}[0-9]*" | grep -Eo "([0-9]*\.){3}[0-9]*" | grep -v "127.0.0.1"
+}
 
 # zsh history
 setopt share_history
