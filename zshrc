@@ -60,6 +60,11 @@ ipv4() {
   ifconfig | grep -Eo "inet (addr:)?([0-9]*\.){3}[0-9]*" | grep -Eo "([0-9]*\.){3}[0-9]*" | grep -v "127.0.0.1"
 }
 
+swsh() {
+  echo "Current shell: $SHELL"
+  cat /etc/shells | grep -vE '^\s*(#|$)' | fzf | xargs chsh -s
+}
+
 # zsh history
 setopt share_history
 setopt hist_ignore_dups
