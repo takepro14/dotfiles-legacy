@@ -8,7 +8,13 @@ return {
   },
   config = function()
     require('mason-null-ls').setup({
-      ensure_installed = { 'stylua', 'prettier', 'clang_format' },
+      -- Auto install
+      ensure_installed = {
+        'stylua',
+        'prettier',
+        'clang_format',
+        'rubocop',
+      },
     })
   end,
 }
