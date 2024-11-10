@@ -23,5 +23,6 @@
   stashes = stash list
   hub = browse
   diffpick = !git diff --color=always $(git diff --name-only | fzf)
+  addpick = !git add $(git status -s | sed 's/^?? / U /' | fzf -m | awk '{print $NF}')
 [commit]
   template = ~/.gitmessage
