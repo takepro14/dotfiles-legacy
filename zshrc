@@ -204,5 +204,11 @@ proxy() {
 # acc
 alias abc=$HOME/.dotfiles/acc.sh
 
+# Salesforce
+soql() {
+  local query=$1 org=${2:-prod}
+  sf data query --query $query --target-org $org
+}
+
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
