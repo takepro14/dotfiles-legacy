@@ -8,7 +8,7 @@ soql() {
     query=$(echo "$query" | sed "s/\*/$all_columns/")
   fi
   echo "----- \nSOQL: $query\n-----"
-  sf data query -q $query -o $org
+  sf data query -q $query -o $org --json
 }
 
 sfprefixes() {
