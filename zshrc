@@ -40,14 +40,16 @@ alias ...='../../'
 alias ....='../../../'
 alias .....='../../../../'
 
-cdpick() {
-  directory=$(find . -type d | fzf --preview "ls -la {}")
-  [[ -n $directory ]] && cd "$directory"
+fzcd() {
+  find . -type d -not -path '*/.git*' | fzf --preview "ls -la {}" | xargs -r cd
 }
 
-vimpick() {
-  file=$(find . -type f | fzf --preview "cat {}")
-  [[ -n $file ]] && nvim $file
+fzrm() {
+  fzf --preview "cat {}" | xargs -r -I{} sh -c 'rm "{}" && echo "{} is removed."'
+}
+
+fzvim() {
+  fzf --preview "cat {}" | xargs -r nvim
 }
 
 mkcd() {
