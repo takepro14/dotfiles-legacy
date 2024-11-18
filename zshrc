@@ -61,9 +61,7 @@ uuid() {
 }
 
 keygen() {
-  local length=${1:-12}
-  echo "$(openssl rand -base64 $length)" | pbcopy
-  echo "Copied!"
+  openssl rand -base64 ${1:-12} | pbcopy && echo 'Copied!'
 }
 
 gip() {
