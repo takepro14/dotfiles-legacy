@@ -39,6 +39,7 @@ alias -g C='| wc -l'
 alias ...='../../'
 alias ....='../../../'
 alias .....='../../../../'
+alias sysinfo='neofetch'
 
 fzcd() {
   find . -type d -not -path '*/.git*' | fzf --preview "ls -la {}" | xargs -r cd
