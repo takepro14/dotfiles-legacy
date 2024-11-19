@@ -20,6 +20,19 @@ return {
   },
   opts = {
     on_attach = tree_keys,
+    view = {
+      adaptive_size = true,
+    },
+    update_focused_file = {
+      enable = true,
+    },
+    git = {
+      enable = true,
+      ignore = false,
+    },
+    modified = {
+      enable = true,
+    },
     filters = {
       git_ignored = true,
       dotfiles = false,
