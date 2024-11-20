@@ -1,14 +1,20 @@
 # Salesforce functions
 
+# soql(query: string, org: string, ...extra_opts: ("all" | "json")[]): void
 soql() {
   local query=$1 org=$2
+  shift 2
+  local extra_opts=("$@")
   if [[ $query == *"*"* ]]; then
     local obj=$(echo $query | sed -n 's/.*from \([a-zA-Z0-9_]*\).*/\1/p')
     local all_columns=$(sf sobject describe -s $obj -o $org | jq -r '.fields[].name' | tr '\n' ',' | sed 's/,$//')
     query=$(echo "$query" | sed "s/\*/$all_columns/")
   fi
   echo "----- \nSOQL: $query\n-----"
-  sf data query -q $query -o $org --json
+  sf data query \
+    -q $query $([[ "${extra_opts[*]}" == *'all'* ]] && echo '--all-rows') \
+    -o $org \
+    $([[ "${extra_opts[*]}" == *'json'* ]] && echo '--json')
 }
 
 sfprefixes() {
