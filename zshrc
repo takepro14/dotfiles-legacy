@@ -79,6 +79,14 @@ swsh() {
   cat /etc/shells | grep -vE '^\s*(#|$)' | fzf | xargs chsh -s
 }
 
+vimdiff() {
+  local file1 file2
+  file1=$(fzf --prompt="first file: " --preview="cat {}") || return 1
+  echo "first file: $file1"
+  file2=$(fzf --prompt="second file: " --preview="cat {}") || return 1
+  nvim -d $file1 $file2
+}
+
 # zsh history
 setopt share_history
 setopt hist_ignore_dups
