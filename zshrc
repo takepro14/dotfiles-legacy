@@ -42,7 +42,8 @@ alias .....='../../../../'
 alias sysinfo='neofetch'
 
 fzcd() {
-  find . -type d -not -path '*/.git*' | fzf --preview "ls -la {}" | xargs -r cd
+  dir=$(find . -type d -not -path '*/.git*' | fzf --preview "ls -la {}")
+  [ -n "$dir" ] && cd "$dir"
 }
 
 fzrm() {
