@@ -87,6 +87,13 @@ vimdiff() {
   nvim -d $file1 $file2
 }
 
+tmuxset() {
+  tmux new-session -d -s takepro14 -n '.' -c "${HOME}/ghq/github.com/takepro14/dotfiles"
+  tmux new-window -t takepro14 -n 'Dropbox' -c "${HOME}/Dropbox"
+  tmux new-window -t takepro14 -n 'dev' -c "${HOME}/dev"
+  tmux attach-session -t takepro14
+}
+
 # zsh history
 setopt share_history
 setopt hist_ignore_dups
