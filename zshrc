@@ -106,6 +106,12 @@ til() {
   find ~/ghq/github.com/takepro14/til \( -type d -name node_modules -o -type d -name .git \) -prune -o -type f | sort | fzf --height 80% | xargs -I {} code "{}"
 }
 
+tilnew() {
+  read -r "tech?Enter the tech: "
+  read "title?Enter the title: "
+  code "$HOME/ghq/github.com/takepro14/til/[${tech}] ${title}.md"
+}
+
 # zsh history
 setopt share_history
 setopt hist_ignore_dups
