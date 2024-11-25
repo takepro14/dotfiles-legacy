@@ -102,6 +102,10 @@ tmuxattach() {
   tmux attach-session -t $session
 }
 
+til() {
+  find ~/ghq/github.com/takepro14/til \( -type d -name node_modules -o -type d -name .git \) -prune -o -type f | sort | fzf --height 80% | xargs -I {} code "{}"
+}
+
 # zsh history
 setopt share_history
 setopt hist_ignore_dups
