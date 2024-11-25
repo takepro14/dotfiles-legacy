@@ -91,7 +91,15 @@ tmuxset() {
   tmux new-session -d -s takepro14 -n '.' -c "${HOME}/ghq/github.com/takepro14/dotfiles"
   tmux new-window -t takepro14 -n 'Dropbox' -c "${HOME}/Dropbox"
   tmux new-window -t takepro14 -n 'dev' -c "${HOME}/dev"
-  tmux attach-session -t takepro14
+  source "${HOME}/ghq/github.com/takepro14/dotfiles/project/zshrc" && tmuxset_project
+  tmuxattach
+}
+
+tmuxattach() {
+  local session
+  session=$(tmux list-sessions -F "#{session_name}" 2>/dev/null | fzf --prompt="Select a tmux session: ")
+  [[ -z $session ]] && echo "No session selected." && return 1
+  tmux attach-session -t $session
 }
 
 # zsh history
