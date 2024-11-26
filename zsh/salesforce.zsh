@@ -1,6 +1,6 @@
 # Salesforce functions
 
-# soql(query: string, org: string, ...extra_opts: ("all" | "json")[]): void
+# soql(query: string, org: string, ...extra_opts: ("all" | ("json" | "csv"))[]): void
 soql() {
   local query=$1 org=$2
   shift 2
@@ -11,10 +11,10 @@ soql() {
     query=$(echo "$query" | sed "s/\*/$all_columns/")
   fi
   echo "----- \nSOQL: $query\n-----"
-  sf data query \
-    -q $query $([[ "${extra_opts[*]}" == *'all'* ]] && echo '--all-rows') \
-    -o $org \
-    $([[ "${extra_opts[*]}" == *'json'* ]] && echo '--json')
+  sf data query -q $query \
+    $([[ "${extra_opts[*]}" == *'all'* ]] && echo '--all-rows') \
+    $([[ "${extra_opts[*]}" == *'json'* ]] && echo '--json' || [[ "${extra_opts[*]}" == *'csv'* ]] && echo '--result-format csv') \
+    -o $org
 }
 
 sfprefixes() {
