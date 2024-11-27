@@ -32,3 +32,8 @@ sfcols() {
   sf sobject describe -s $obj -o $org | jq -r '.fields[] | [.label, .name] | @sh' | awk 'BEGIN {print "fields=("} {print "  (" $0 ")"} END {print ")"}'
 }
 
+sfaccessable() {
+  local userid=$1 recordid=$2 org=$3
+  sf data query -q "SELECT RecordId, HasReadAccess FROM UserRecordAccess WHERE UserId = '$userid' AND RecordId = '$recordid'" -o $org
+}
+
