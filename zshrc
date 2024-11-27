@@ -87,21 +87,6 @@ vimdiff() {
   nvim -d $file1 $file2
 }
 
-tmuxset() {
-  tmux new-session -d -s takepro14 -n '.' -c "${HOME}/ghq/github.com/takepro14/dotfiles"
-  tmux new-window -t takepro14 -n 'Dropbox' -c "${HOME}/Dropbox"
-  tmux new-window -t takepro14 -n 'dev' -c "${HOME}/dev"
-  source "${HOME}/ghq/github.com/takepro14/dotfiles/project/zshrc" && tmuxset_project
-  tmuxattach
-}
-
-tmuxattach() {
-  local session
-  session=$(tmux list-sessions -F "#{session_name}" 2>/dev/null | fzf --prompt="Select a tmux session: ")
-  [[ -z $session ]] && echo "No session selected." && return 1
-  tmux attach-session -t $session
-}
-
 til() {
   find ~/ghq/github.com/takepro14/til \( -type d -name node_modules -o -type d -name .git \) -prune -o -type f | sort | fzf --height 80% | xargs -I {} code "{}"
 }
@@ -134,7 +119,7 @@ alias vim='nvim'
 alias vimi='nvim -u ${HOME}/.dotfiles/config/nvim/init-minimal.lua'
 
 # tmux
-alias ide=$HOME/.dotfiles/tmux.sh
+source $HOME/.dotfiles/zsh/tmux.zsh
 
 # Git
 eval "$(hub alias -s)"
@@ -238,7 +223,7 @@ proxy() {
 }
 
 # acc
-alias abc=$HOME/.dotfiles/acc.sh
+source $HOME/.dotfiles/zsh/acc.zsh
 
 # Salesforce
 source $HOME/.dotfiles/zsh/salesforce.zsh
