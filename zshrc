@@ -23,6 +23,7 @@ setopt auto_cd
 setopt auto_pushd
 setopt nobeep
 setopt complete_aliases
+setopt physical
 alias g='git'
 alias ls='ls -G'
 alias ll="ls -lG -D '%y-%m-%d %H:%M'"
