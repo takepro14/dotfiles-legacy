@@ -131,6 +131,7 @@ bindkey -e  # enable emacs style key bind
 
 # Neovim
 alias vim='nvim'
+alias vimi='nvim -u ${HOME}/.dotfiles/config/nvim/init-minimal.lua'
 
 # tmux
 alias ide=$HOME/.dotfiles/tmux.sh
