@@ -37,6 +37,13 @@ vim.cmd('highlight CmpPmenuThumb guibg=NONE ctermbg=NONE')
 vim.cmd('highlight CmpDocumentation guibg=NONE ctermbg=NONE')
 vim.cmd('highlight CmpDocumentationBorder guibg=NONE ctermbg=NONE')
 
+vim.cmd([[
+  highlight DiffAdd    guibg=#3a5640 guifg=NONE ctermbg=DarkGreen ctermfg=NONE
+  highlight DiffChange guibg=#4e437a guifg=NONE ctermbg=DarkBlue ctermfg=NONE
+  highlight DiffDelete guibg=#603d3d guifg=NONE ctermbg=DarkRed ctermfg=NONE
+  highlight DiffText   guibg=#6c5076 guifg=NONE ctermbg=DarkMagenta ctermfg=NONE
+]])
+
 vim.api.nvim_create_autocmd('User', {
   pattern = 'VeryLazy',
   callback = function()
