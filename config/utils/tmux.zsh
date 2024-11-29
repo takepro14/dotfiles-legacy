@@ -1,4 +1,4 @@
-# Tmux functions
+# Tmux utilities
 
 # Tmux Set
 tmset() {

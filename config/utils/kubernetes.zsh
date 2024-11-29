@@ -1,4 +1,4 @@
-# Kubernetes functions
+# Kubernetes utilities
 
 source <(kubectl completion zsh)
 compdef kc=kubectl

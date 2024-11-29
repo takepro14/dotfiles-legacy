@@ -1,4 +1,4 @@
-# AtCoder functions
+# AtCoder utilities
 
 abc() {
   contest=$1

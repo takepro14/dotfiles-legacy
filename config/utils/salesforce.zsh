@@ -1,4 +1,4 @@
-# Salesforce functions
+# Salesforce utilities
 
 # soql(query: string, org: string, ...extra_opts: ("all" | ("json" | "csv"))[]): void
 soql() {
