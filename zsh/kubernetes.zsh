@@ -1,7 +1,7 @@
 # Kubernetes functions
 
 source <(kubectl completion zsh)
-complete -F __start_kubectl kc
+compdef kc=kubectl
 
 alias kc='kubectl'
 
