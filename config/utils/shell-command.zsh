@@ -18,7 +18,6 @@ alias .....='../../../../'
 alias sysinfo='neofetch'
 alias vim='nvim'
 alias vimi='nvim -u ${HOME}/.dotfiles/config/nvim/init-minimal.lua'
-alias zopts='set -o'
 
 fzcd() {
   dir=$(find . -type d -not -path '*/.git*' | fzf --preview "ls -la {}")
@@ -64,4 +63,13 @@ vimdiff() {
   echo "first file: $file1"
   file2=$(fzf --prompt="second file: " --preview="cat {}") || return 1
   nvim -d $file1 $file2
+}
+
+zconfig() {
+  echo "\n--- Config Files ---"; echo "ZDOTDIR: $ZDOTDIR\nZSH: $ZSH\n.zshrc: ${ZDOTDIR:-$HOME}/.zshrc"
+  echo "\n--- Env Variables ---"; env
+  echo "\n--- Options ---"; set -o
+  echo "\n--- Key Bindings ---"; bindkey
+  echo "\n--- Aliases ---"; alias
+  echo "\n--- Functions ---"; functions | awk '/^[-_a-zA-Z0-9]+ \(\) \{$/ {print $1}'
 }
