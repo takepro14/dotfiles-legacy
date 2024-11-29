@@ -24,7 +24,6 @@ setopt auto_pushd
 setopt nobeep
 setopt complete_aliases
 setopt physical
-alias g='git'
 alias ls='ls -G'
 alias ll="ls -lG -D '%y-%m-%d %H:%M'"
 alias la="ls -laG -D '%y-%m-%d %H:%M'"
@@ -139,14 +138,7 @@ alias dcdown='docker-compose down'
 alias dcrestart='docker-compose restart'
 
 # Kubernetes
-alias -g KP='$(kubectl get pods | fzf | awk "{print \$1}")'
-alias -g KN='$(kubectl get nodes | fzf | awk "{print \$1}")'
-alias kc='kubectl'
-alias kce='kubectl exec -it KP' # ex. kce -c app ash
-alias kcl='kubectl logs -f KP'  # ex. kcl app
-alias kdp='kubectl describe pod KP'
-alias kdn='kubectl describe node KN'
-export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+source $HOME/.dotfiles/zsh/kubernetes.zsh
 
 # Golang
 export GOPATH=$HOME/go
@@ -179,9 +171,7 @@ eval "$(nodenv init -)"
 source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 
-# Kubernetes
-source <(kubectl completion zsh)
-complete -F __start_kubectl kc
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
 kctx() {
   kubectl config unset current-context > /dev/null 2>&1
