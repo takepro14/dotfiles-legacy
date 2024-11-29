@@ -6,7 +6,7 @@ tmset() {
   tmux new-window -t takepro14 -n 'Dropbox' -c "${HOME}/Dropbox"
   tmux new-window -t takepro14 -n 'dev' -c "${HOME}/dev"
   source "${HOME}/.dotfiles/project/zshrc" && tmuxset_project
-  tmuxattach
+  tmat
 }
 
 # Tmux Attach
