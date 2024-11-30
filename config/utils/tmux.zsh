@@ -5,7 +5,6 @@ tmset() {
   tmux new-session -d -s takepro14 -n '.' -c "${HOME}/.dotfiles"
   tmux new-window -t takepro14 -n 'Dropbox' -c "${HOME}/Dropbox"
   tmux new-window -t takepro14 -n 'dev' -c "${HOME}/dev"
-  source "${HOME}/.dotfiles/project/zshrc" && tmuxset_project
   tmat
 }
 
