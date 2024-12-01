@@ -1,8 +1,6 @@
 # Kubernetes utilities
 
 source <(kubectl completion zsh)
-compdef kc=kubectl
-
 alias kc='kubectl'
 
 kcls() {
