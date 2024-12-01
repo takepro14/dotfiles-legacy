@@ -51,7 +51,7 @@ source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/compl
 source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 
 # Language specific utilities
-for file in $HOME/.dotfiles/config/utils/*.zsh; do
+for file in $HOME/.dotfiles/utils/*.zsh; do
   [ -f "$file" ] && source "$file"
 done
 
