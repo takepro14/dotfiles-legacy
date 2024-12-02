@@ -13,7 +13,7 @@ soql() {
   echo "----- \nSOQL: $query\n-----"
   sf data query -q $query \
     $([[ "${extra_opts[*]}" == *'all'* ]] && echo '--all-rows') \
-    $([[ "${extra_opts[*]}" == *'json'* ]] && echo '--json' || [[ "${extra_opts[*]}" == *'csv'* ]] && echo '--result-format csv') \
+    $([[ "${extra_opts[*]}" == *'json'* ]] && echo '--json' || [[ "${extra_opts[*]}" == *'csv'* ]] && echo '-r csv') \
     -o $org
 }
 
