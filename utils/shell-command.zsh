@@ -44,6 +44,14 @@ keygen() {
   openssl rand -base64 ${1:-12} | pbcopy && echo 'Copied!'
 }
 
+b64enc() {
+  echo -n $1 | base64
+}
+
+b64dec() {
+  echo -n $1 | base64 -d
+}
+
 gip() {
   curl -s http://checkip.amazonaws.com
 }
