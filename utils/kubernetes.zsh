@@ -3,8 +3,19 @@
 source <(kubectl completion zsh)
 alias kc='kubectl'
 
-kcls() {
-  kubectl get nodes,services,deployments,replicasets,pods
+# ex. kcg, kcg all, kcg pod watch, kcg deployment yaml
+kcg() {
+  if [[ "$1" == "all" ]]; then
+    kubectl get ingress,services,nodes,deployments,replicasets,pods
+  else
+    local resource="${1:-$(kubectl api-resources --no-headers | fzf --prompt="Select Resource: " | awk '{print $1}')}"
+    [[ $# -gt 0 ]] && shift
+    local extra_opts=("$@")
+    [[ -n "$resource" ]] &&
+      kubectl get "$resource" \
+      $([[ "${extra_opts[*]}" == *'yaml'* ]] && echo '-o yaml') \
+      $([[ "${extra_opts[*]}" == *'watch'* ]] && echo '--watch')
+  fi
 }
 
 kca() {
@@ -19,7 +30,7 @@ kcd() {
 
 kce() {
   local pod=$(_selected_pod)
-  [[ -n "$pod" ]] && kubectl exec -it "$pod" -- /bin/ash
+  [[ -n "$pod" ]] && kubectl exec -it "$pod" -- /bin/sh
 }
 
 kcl() {
@@ -27,28 +38,23 @@ kcl() {
   [[ -n "$pod" ]] && kubectl logs -f "$pod"
 }
 
-kcp() {
+kcdb() {
   local pod=$(_selected_pod)
-  [[ -n "$pod" ]] && kubectl describe pod "$pod"
+  local container=$(kubectl get pod "$pod" -o jsonpath='{.spec.containers[*].name}' | tr ' ' '\n' | fzf --prompt="Select Container: ")
+  [[ -n "$pod" ]] && [[ -n "$container" ]] && kubectl debug -it "$pod" --image curlimages/curl --target="$container" -- sh
 }
 
-kcn() {
-  local node=$(_selected_node)
-  [[ -n "$node" ]] && kubectl describe node "$node"
-}
-
-kcnips() {
-  kubectl get nodes -o jsonpath='{range .items[*]}{.metadata.name}: {.status.addresses[?(@.type=="InternalIP")].address}{"\n"}{end}'
+kcds() {
+  local resource="${1:-$(kubectl api-resources --no-headers | fzf --prompt="Select Resource: " | awk '{print $1}')}"
+  [[ -n "$resource" ]] &&
+    echo "-----\nResource: $resource\n-----" && \
+    kubectl describe "$resource"
 }
 
 # Private functions
 
 _selected_pod() {
   kubectl get pods | fzf | awk '{print $1}'
-}
-
-_selected_node() {
-  kubectl get nodes | fzf | awk '{print $1}'
 }
 
 _selected_manifest() {
