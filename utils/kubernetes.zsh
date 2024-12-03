@@ -3,61 +3,94 @@
 source <(kubectl completion zsh)
 alias kc='kubectl'
 
-# ex. kcg, kcg all, kcg pod watch, kcg deployment yaml
+export MANIFESTS_DIR=.
+
+# ex. kcg | kcg all | kcg pod [options]
 kcg() {
-  if [[ "$1" == "all" ]]; then
+  if [[ -z "$1" ]]; then
+    kubectl get $(_selected_resource) -n default
+  elif [[ "$1" == "all" ]]; then
     kubectl get ingress,services,nodes,deployments,replicasets,pods
   else
-    local resource="${1:-$(kubectl api-resources --no-headers | fzf --prompt="Select Resource: " | awk '{print $1}')}"
-    [[ $# -gt 0 ]] && shift
-    local extra_opts=("$@")
-    [[ -n "$resource" ]] &&
-      kubectl get "$resource" \
-      $([[ "${extra_opts[*]}" == *'yaml'* ]] && echo '-o yaml') \
-      $([[ "${extra_opts[*]}" == *'watch'* ]] && echo '--watch')
+    kubectl get "$@"
   fi
 }
 
+# ex. kca | kca -f *.yaml [options]
 kca() {
-  local manifest=$(_selected_manifest)
-  [[ -n "$manifest" ]] && kubectl apply --filename "$manifest"
+  if [[ -z "$1" ]]; then
+    kubectl apply -f $(_selected_manifest) -n default
+  else
+    kubectl apply "$@"
+  fi
 }
 
+# ex. kcd | kcd -f *.yaml [options]
 kcd() {
-  local manifest=$(_selected_manifest)
-  [[ -n "$manifest" ]] && kubectl delete --filename "$manifest"
+  if [[ -z "$1" ]]; then
+    kubectl delete -f $(_selected_manifest) -n default
+  else
+    kubectl delete "$@"
+  fi
 }
 
+# ex. kce | kce -it <pod-name> [options]
 kce() {
-  local pod=$(_selected_pod)
-  [[ -n "$pod" ]] && kubectl exec -it "$pod" -- /bin/sh
+  if [[ -z "$1" ]]; then
+    kubectl exec -it $(_selected_pod) -- /bin/sh -n default
+  else
+    kubectl exec "$@"
+  fi
 }
 
+# ex. kcl | kcl -f <pod-name> [options]
 kcl() {
-  local pod=$(_selected_pod)
-  [[ -n "$pod" ]] && kubectl logs -f "$pod"
+  if [[ -z "$1" ]]; then
+    kubectl logs -f $(_selected_pod) -n default
+  else
+    kubectl logs "$@"
+  fi
 }
 
+# ex. kcdb | kcdb -it <pod-name> [options]
 kcdb() {
-  local pod=$(_selected_pod)
-  local container=$(kubectl get pod "$pod" -o jsonpath='{.spec.containers[*].name}' | tr ' ' '\n' | fzf --prompt="Select Container: ")
-  [[ -n "$pod" ]] && [[ -n "$container" ]] && kubectl debug -it "$pod" --image curlimages/curl --target="$container" -- sh
+  if [[ -z "$1" ]]; then
+    local pod=$(_selected_pod)
+    local container=$(_selected_container "$pod")
+    kubectl debug -it "$pod" --image curlimages/curl --target="$container" -- sh
+  else
+    kubectl debug "$@"
+  fi
 }
 
+# ex. kcds | kcds <resource-name> [options]
 kcds() {
-  local resource="${1:-$(kubectl api-resources --no-headers | fzf --prompt="Select Resource: " | awk '{print $1}')}"
-  [[ -n "$resource" ]] &&
-    echo "-----\nResource: $resource\n-----" && \
-    kubectl describe "$resource"
+  if [[ -z "$1" ]]; then
+    kubectl describe $(_selected_resource) -n default
+  else
+    kubectl describe "$@"
+  fi
 }
 
 # Private functions
 
+_selected_resource() {
+  local resource=$(kubectl api-resources --no-headers | fzf --prompt="Resource: " | awk '{print $1}')
+  [[ -n "$resource" ]] && echo "Resource: $resource\n-----" >&2 && echo "$resource"
+}
+
 _selected_pod() {
-  kubectl get pods | fzf | awk '{print $1}'
+  local pod=$(kubectl get pods --no-headers | fzf --prompt="Pod: " | awk '{print $1}')
+  [[ -n "$pod" ]] && echo "Pod: $pod\n-----" >&2 && echo "$pod"
+}
+
+_selected_container() {
+  local container=$(kubectl get pods "$1" --no-headers -o jsonpath='{.spec.containers[*].name}' | tr ' ' '\n' | fzf --prompt="Container: ")
+  [[ -n "$container" ]] && echo "Container: $container\n-----" >&2 && echo "$container"
 }
 
 _selected_manifest() {
-  find . -type f \( -name '*.yaml' -o -name '*.yml' \) | fzf | awk '{print $1}'
+  local manifest=$(find "$MANIFESTS_DIR" -type f \( -name '*.yaml' -o -name '*.yml' \) | fzf --prompt="Manifest: ")
+  [[ -n "$manifest" ]] && echo "Manifest: $manifest\n-----" >&2 && echo "$manifest"
 }
 
