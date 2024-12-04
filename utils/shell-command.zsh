@@ -73,6 +73,12 @@ vimdiff() {
   nvim -d $file1 $file2
 }
 
+killp() {
+  local cpu_col=3
+  local pid=$(ps aux | sort -rk $cpu_col | fzf --header="$(ps aux | head -n 1)" | awk '{print $2}')
+  [[ -n "$pid" ]] && kill -9 "$pid" && echo "Killed process $pid"
+}
+
 zconfig() {
   echo "\n--- Config Files ---"; echo "ZDOTDIR: $ZDOTDIR\nZSH: $ZSH\n.zshrc: ${ZDOTDIR:-$HOME}/.zshrc"
   echo "\n--- Env Variables ---"; env
