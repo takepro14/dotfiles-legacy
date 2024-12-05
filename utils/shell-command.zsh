@@ -80,6 +80,13 @@ killp() {
   [[ -n "$pid" ]] && kill -9 "$pid" && echo "Killed process $pid"
 }
 
+# ex. loc 2024-01-01 2024-12-31
+loc() {
+  git log --numstat --pretty="%H" --author=$(git config user.name) \
+    --since="$1" --until="$2" --no-merges \
+    | awk 'NF==3 {add+=$1; del+=$2} END {printf("%d (+%d, -%d)\n", add+del, add, del)}'
+}
+
 zconfig() {
   echo "\n--- Config Files ---"; echo "ZDOTDIR: $ZDOTDIR\nZSH: $ZSH\n.zshrc: ${ZDOTDIR:-$HOME}/.zshrc"
   echo "\n--- Env Variables ---"; env
