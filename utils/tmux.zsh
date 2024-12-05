@@ -10,8 +10,8 @@ tmset() {
 }
 
 tmat() {
-  local session=$(tmux list-sessions -F "#{session_name}" | fzf --prompt="Session: ")
-  [[ -n $session ]] && tmux attach-session -t $session
+  local session=$(tmux ls -F "#{session_name}" | fzf --prompt="Session: ")
+  [[ -n $session ]] && tmux a -t $session
 }
 
 tmide() {
