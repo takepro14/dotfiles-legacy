@@ -18,6 +18,7 @@ alias .....='../../../../'
 alias sysinfo='neofetch'
 alias vim='nvim'
 alias vimi='nvim -u ${HOME}/.dotfiles/config/nvim/init-minimal.lua'
+alias hatebu='open https://b.hatena.ne.jp/hotentry/it'
 
 fzcd() {
   dir=$(find . -type d -not -path '*/.git*' | fzf --preview "ls -la {}")
