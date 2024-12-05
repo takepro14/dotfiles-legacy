@@ -10,10 +10,8 @@ tmset() {
 }
 
 tmat() {
-  local session
-  session=$(tmux list-sessions -F "#{session_name}" 2>/dev/null | fzf --prompt="Select a tmux session: ")
-  [[ -z $session ]] && echo "No session selected." && return 1
-  tmux attach-session -t $session
+  local session=$(tmux list-sessions -F "#{session_name}" | fzf --prompt="Session: ")
+  [[ -n $session ]] && tmux attach-session -t $session
 }
 
 tmide() {
