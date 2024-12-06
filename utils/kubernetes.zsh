@@ -8,7 +8,8 @@ export MANIFESTS_DIR=.
 # ex. kcg | kcg all | kcg pod [options]
 kcg() {
   if [[ -z "$1" ]]; then
-    kubectl get $(_selected_resource) -n default
+    local resource=$(_selected_resource)
+    [[ -n "$resource" ]] && kubectl get "$resource" -n default
   elif [[ "$1" == "all" ]]; then
     kubectl get ingress,services,nodes,deployments,replicasets,pods
   else
@@ -19,7 +20,8 @@ kcg() {
 # ex. kca | kca -f *.yaml [options]
 kca() {
   if [[ -z "$1" ]]; then
-    kubectl apply -f $(_selected_manifest) -n default
+    local manifest=$(_selected_manifest)
+    [[ -n "$manifest" ]] && kubectl apply -f "$manifest" -n default
   else
     kubectl apply "$@"
   fi
@@ -28,7 +30,8 @@ kca() {
 # ex. kcd | kcd -f *.yaml [options]
 kcd() {
   if [[ -z "$1" ]]; then
-    kubectl delete -f $(_selected_manifest) -n default
+    local manifest=$(_selected_manifest)
+    [[ -n "$manifest" ]] && kubectl delete -f "$manifest" -n default
   else
     kubectl delete "$@"
   fi
@@ -37,7 +40,8 @@ kcd() {
 # ex. kce | kce -it <pod-name> [options]
 kce() {
   if [[ -z "$1" ]]; then
-    kubectl exec -it $(_selected_pod) -- /bin/sh -n default
+    local pod=$(_selected_pod)
+    [[ -n "$pod" ]] && kubectl exec -it "$pod" -- /bin/sh -n default
   else
     kubectl exec "$@"
   fi
@@ -46,7 +50,8 @@ kce() {
 # ex. kcl | kcl -f <pod-name> [options]
 kcl() {
   if [[ -z "$1" ]]; then
-    kubectl logs -f $(_selected_pod) -n default
+    local pod=$(_selected_pod)
+    [[ -n "$pod" ]] && kubectl logs "$pod" -n default
   else
     kubectl logs "$@"
   fi
@@ -57,7 +62,7 @@ kcdb() {
   if [[ -z "$1" ]]; then
     local pod=$(_selected_pod)
     local container=$(_selected_container "$pod")
-    kubectl debug -it "$pod" --image curlimages/curl --target="$container" -- sh
+    [[ -n "$pod" && -n "$container" ]] && kubectl debug -it "$pod" --image curlimages/curl --target="$container" -- sh
   else
     kubectl debug "$@"
   fi
@@ -66,7 +71,8 @@ kcdb() {
 # ex. kcds | kcds <resource-name> [options]
 kcds() {
   if [[ -z "$1" ]]; then
-    kubectl describe $(_selected_resource) -n default
+    local resource=$(_selected_resource)
+    [[ -n "$resource" ]] && kubectl describe "$resource" -n default
   else
     kubectl describe "$@"
   fi
