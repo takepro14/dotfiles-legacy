@@ -48,7 +48,11 @@ keygen() {
 b64() {
   read 'string?String: '
   read 'mode?Encode or Decode? (e/d): '
-  [[ "$mode" == "e" || "E" ]] && echo -n $string | base64 || echo -n $string | base64 -d
+  if [[ "$mode" == 'e' || "$mode" == 'E' ]]; then
+    echo -n $string | base64
+  elif [[ "$mode" == 'd' || "$mode" == 'D' ]]; then
+    echo -n $string | base64 -d
+  fi
 }
 
 gip() {
