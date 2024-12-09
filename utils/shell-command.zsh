@@ -77,6 +77,15 @@ killp() {
   [[ -n "$pid" ]] && kill -9 "$pid" && echo "Killed process $pid"
 }
 
+repcmd() {
+  read 'cmd?Command: '
+  read 'interval?Interval (sec): '
+  while true; do
+    eval "$cmd"
+    sleep "$interval"
+  done
+}
+
 # ex. loc 2024-01-01 2024-12-31
 loc() {
   git log --numstat --pretty="%H" --author=$(git config user.name) \
