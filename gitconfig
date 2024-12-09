@@ -24,5 +24,14 @@
   hub = browse
   diffpick = !git diff --color=always $(git diff --name-only | fzf)
   addpick = !git add $(git status -s | sed 's/^?? / U /' | fzf -m | awk '{print $NF}')
+  loc = "!f() { \
+    read -p 'Start Date (default: 2024-01-01): ' start_date; \
+    read -p 'End Date (default: 2024-12-31): ' end_date; \
+    start_date=${start_date:-2024-01-01}; \
+    end_date=${end_date:-2024-12-31}; \
+    git log --numstat --pretty='%H' --author=\"$(git config user.name)\" \
+    --since=\"$start_date\" --until=\"$end_date\" --no-merges | \
+    awk 'NF==3 {add+=$1; del+=$2} END {printf(\"%d (+%d, -%d)\\n\", add+del, add, del)}'; \
+  }; f"
 [commit]
   template = ~/.gitmessage
