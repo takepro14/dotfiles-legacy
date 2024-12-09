@@ -45,12 +45,10 @@ keygen() {
   openssl rand -base64 ${1:-12} | pbcopy && echo 'Copied!'
 }
 
-b64enc() {
-  echo -n $1 | base64
-}
-
-b64dec() {
-  echo -n $1 | base64 -d
+b64() {
+  read 'string?String: '
+  read 'mode?Encode or Decode? (e/d): '
+  [[ "$mode" == "e" || "E" ]] && echo -n $string | base64 || echo -n $string | base64 -d
 }
 
 gip() {
