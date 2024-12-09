@@ -20,6 +20,17 @@ alias vim='nvim'
 alias vimi='nvim -u ${HOME}/.dotfiles/config/nvim/init-minimal.lua'
 alias hatebu='open https://b.hatena.ne.jp/hotentry/it'
 
+openlinks() {
+  local json_file="$HOME/.dotfiles/utils/config/.local.links.json"
+  [[ ! -f "$json_file" ]] && echo "Error: File '$json_file' not found." && return 1
+  local browser=$(jq -r '.browser' "$json_file")
+  local links=$(jq -r '.links | to_entries[] | "\(.key)\t\(.value)"' "$json_file")
+  echo "$links" | while IFS=$'\t' read -r key url; do
+    echo "Open: $key"
+    open -a "$browser" "$url"
+  done
+}
+
 fzcd() {
   dir=$(find . -type d -not -path '*/.git*' | fzf --preview "ls -la {}")
   [ -n "$dir" ] && cd "$dir"
