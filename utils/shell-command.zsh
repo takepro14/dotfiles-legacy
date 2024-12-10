@@ -64,26 +64,13 @@ uuid() {
 }
 
 keygen() {
-  read 'length?Length (default: 12): '
-  length=${length:-12}
-  read 'alnum?Alphanumeric only? (y/N): '
-  if [[ $alnum =~ ^[Yy]$ ]]; then
-    key=$(LC_ALL=C tr -dc 'A-Za-z0-9' < /dev/urandom | head -c "$length")
-  else
-    key=$(openssl rand -base64 "$length")
-  fi
-  echo "$key" | tee >(pbcopy)
-  echo 'Copied!'
+  read 'length?Length (default: 12): '; local length=${length:-12}
+  openssl rand -base64 "$length" | tee >(pbcopy) && echo 'Copied!'
 }
 
 b64() {
-  read 'string?String: '
-  read 'mode?Encode or Decode? (e/d): '
-  if [[ "$mode" == 'e' || "$mode" == 'E' ]]; then
-    echo -n $string | base64
-  elif [[ "$mode" == 'd' || "$mode" == 'D' ]]; then
-    echo -n $string | base64 -d
-  fi
+  read 'string?String: '; read 'mode?Encode or Decode? (e/d): '
+  echo "$string" | base64 $([[ $mode =~ ^[Dd]$ ]] && echo "-d") | tee >(pbcopy) && echo 'Copied!'
 }
 
 gip() {
