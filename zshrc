@@ -33,11 +33,10 @@ setopt hist_reduce_blanks
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=100000
 SAVEHIST=100000
-autoload history-search-end
-zle -N history-beginning-search-backward-end history-search-end
-zle -N history-beginning-search-forward-end history-search-end
-bindkey "^P" history-beginning-search-backward-end
-bindkey "^N" history-beginning-search-forward-end
+bindkey "^R" history-incremental-search-backward
+bindkey "^S" history-incremental-search-forward
+bindkey "^P" up-line-or-history
+bindkey "^N" down-line-or-history
 bindkey -e  # enable emacs style key bind
 
 # Language specific settings
