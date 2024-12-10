@@ -23,3 +23,5 @@ opt.ignorecase = true
 opt.smartcase = true
 opt.incsearch = true
 opt.hlsearch = true
+opt.list = true
+opt.listchars = { space = '·' }
