@@ -17,23 +17,23 @@ soql() {
     -o $org
 }
 
-sfprefixes() {
-  local org=$1
+sfpref() {
+  read 'org?Org: '
   sf data query -q 'SELECT QualifiedApiName, Label, KeyPrefix FROM EntityDefinition' -o $org
 }
 
 sfmeta() {
-  local obj=$1 org=$2
+  read 'obj?Object: '; read 'org?Org: '
   sf sobject describe -s $obj -o $org
 }
 
-sfcols() {
-  local obj=$1 org=$2
+sfcol() {
+  read 'obj?Object: '; read 'org?Org: '
   sf sobject describe -s $obj -o $org | jq -r '.fields[] | [.label, .name] | @sh' | awk 'BEGIN {print "fields=("} {print "  (" $0 ")"} END {print ")"}'
 }
 
-sfaccessable() {
-  local userid=$1 recordid=$2 org=$3
+sfacc() {
+  read 'userid?UserId: '; read 'recordid?RecordId: '; read 'org?Org: '
   sf data query -q "SELECT RecordId, HasReadAccess FROM UserRecordAccess WHERE UserId = '$userid' AND RecordId = '$recordid'" -o $org
 }
 
