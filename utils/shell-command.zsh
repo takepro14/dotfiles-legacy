@@ -104,6 +104,16 @@ openlinks() {
   done
 }
 
+sites() {
+  local json_file="$HOME/.dotfiles/utils/config/.local.sites.json" prompt_msg='Site: '
+  [[ -f "$json_file" ]] && _url_opener "$json_file" "$prompt_msg"
+}
+
+articles() {
+  local json_file="$HOME/.dotfiles/utils/config/.local.articles.json" prompt_msg='Articles: '
+  [[ -f "$json_file" ]] && _url_opener "$json_file" "$prompt_msg"
+}
+
 repcmd() {
   read 'cmd?Command: '; read 'interval?Interval (sec): '
   while true; do eval "$cmd"; sleep "$interval"; done;
@@ -134,6 +144,15 @@ ipv4() {
 }
 
 # --- Private functions ---
+
+_url_opener() {
+  local target=$(
+    jq -r '.[] | "\(.tag)\t\(.title)\t\(.url)\t\(.comment)"' "$1" | \
+    fzf --preview="printf 'Tag: %s\nTitle: %s\nURL: %s\nComment: %s\n' {1} {2} {3} {4}" \
+        --preview-window=up:4 --delimiter=$'\t' --prompt="$2"
+  )
+  [[ -n "$target" ]] && open "$(echo "$target" | awk -F'\t' '{print $3}')"
+}
 
 _selected_file() {
   local prompt_arg=()
