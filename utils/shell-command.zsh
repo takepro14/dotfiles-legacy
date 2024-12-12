@@ -105,13 +105,13 @@ openlinks() {
 }
 
 sites() {
-  local json_file="$HOME/.dotfiles/utils/config/.local.sites.json" prompt_msg='Site: '
-  [[ -f "$json_file" ]] && _url_opener "$json_file" "$prompt_msg"
+  local json_file="$HOME/.dotfiles/utils/config/.local.sites.json" prompt_msg='Site: ' random=${1:+random}
+  [[ -f "$json_file" ]] && _url_opener "$json_file" "$prompt_msg" "$random"
 }
 
 articles() {
-  local json_file="$HOME/.dotfiles/utils/config/.local.articles.json" prompt_msg='Articles: '
-  [[ -f "$json_file" ]] && _url_opener "$json_file" "$prompt_msg"
+  local json_file="$HOME/.dotfiles/utils/config/.local.articles.json" prompt_msg='Articles: ' random=${1:+random}
+  [[ -f "$json_file" ]] && _url_opener "$json_file" "$prompt_msg" "$random"
 }
 
 repcmd() {
@@ -146,12 +146,18 @@ ipv4() {
 # --- Private functions ---
 
 _url_opener() {
-  local target=$(
-    jq -r '.[] | "\(.tag)\t\(.title)\t\(.url)\t\(.comment)"' "$1" | \
-    fzf --preview="printf 'Tag: %s\nTitle: %s\nURL: %s\nComment: %s\n' {1} {2} {3} {4}" \
-        --preview-window=up:4 --delimiter=$'\t' --prompt="$2"
-  )
-  [[ -n "$target" ]] && open "$(echo "$target" | awk -F'\t' '{print $3}')"
+  local json_file="$1" prompt_msg="$2" random=${3:+random}
+  if [[ -n "$random" ]]; then
+    local target=$(jq -r '.[] | "\(.url)"' "$json_file" | shuf -n 1)
+    [[ -n "$target" ]] && open "$target"
+  else
+    local target=$(
+    jq -r 'sort_by(.tag) | .[] | "\(.tag)\t\(.title)\t\(.url)\t\(.comment)"' "$json_file" | \
+      fzf --preview="printf 'Tag: %s\nTitle: %s\nURL: %s\nComment: %s\n' {1} {2} {3} {4}" \
+          --preview-window=up:4 --delimiter=$'\t' --prompt="$prompt_msg"
+    )
+    [[ -n "$target" ]] && open "$(echo "$target" | awk -F'\t' '{print $3}')"
+  fi
 }
 
 _selected_file() {
