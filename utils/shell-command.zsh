@@ -2,6 +2,8 @@
 # Shell commands utilities
 # ===================================
 
+local UTILS_CONFIG_DIR=$HOME/.dotfiles/utils/config/
+
 # --- File Operations  ---
 alias ls='ls -G'
 alias ll="ls -lG -D '%y-%m-%d %H:%M'"
@@ -94,7 +96,7 @@ news() {
 }
 
 openlinks() {
-  local json_file="$HOME/.dotfiles/utils/config/.local.links.json"
+  local json_file="$UTILS_CONFIG_DIR/.local.links.json"
   [[ ! -f "$json_file" ]] && echo "Error: File '$json_file' not found." && return 1
   local browser=$(jq -r '.browser' "$json_file")
   local links=$(jq -r '.links | to_entries[] | "\(.key)\t\(.value)"' "$json_file")
@@ -105,12 +107,12 @@ openlinks() {
 }
 
 sites() {
-  local json_file="$HOME/.dotfiles/utils/config/.local.sites.json" prompt_msg='Site: ' random=${1:+random}
+  local json_file="$UTILS_CONFIG_DIR/.local.sites.json" prompt_msg='Site: ' random=${1:+random}
   [[ -f "$json_file" ]] && _url_opener "$json_file" "$prompt_msg" "$random"
 }
 
 articles() {
-  local json_file="$HOME/.dotfiles/utils/config/.local.articles.json" prompt_msg='Articles: ' random=${1:+random}
+  local json_file="$UTILS_CONFIG_DIR/.local.articles.json" prompt_msg='Articles: ' random=${1:+random}
   [[ -f "$json_file" ]] && _url_opener "$json_file" "$prompt_msg" "$random"
 }
 
