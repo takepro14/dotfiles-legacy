@@ -18,7 +18,7 @@ export LANG=en_US.UTF-8
 export EDITOR=nvim
 export XDG_CONFIG_HOME=~/.config
 export PURE_PROMPT_SYMBOL="$"
-export FZF_DEFAULT_OPTS='--height 50% --reverse'
+export FZF_DEFAULT_OPTS='--height 85% --border --reverse'
 setopt auto_cd
 setopt auto_pushd
 setopt nobeep
