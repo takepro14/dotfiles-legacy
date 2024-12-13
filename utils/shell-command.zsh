@@ -117,6 +117,13 @@ repcmd() {
   while true; do eval "$cmd"; sleep "$interval"; done;
 }
 
+fn() {
+  local als=$(alias | awk -F'=' '{print $1}')
+  local fns=$(declare -f | grep -Ev '^_|^git_|^prompt_' | grep '^[a-zA-Z_][a-zA-Z0-9_]* ()' | awk '{print $1}')
+  local selection=$(printf "%s\n%s" "$als" "$fns" | fzf --prompt="Alias or Function: ")
+  [[ -n "$selection" ]] && print -z "$selection"
+}
+
 # --- Generators ---
 uuid() {
   uuidgen | tr \[:upper:\] \[:lower:\]
