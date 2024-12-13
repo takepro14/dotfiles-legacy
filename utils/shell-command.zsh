@@ -83,16 +83,12 @@ vimd() {
 }
 
 # --- Useful Tools ---
+alias hatebu='open "https://b.hatena.ne.jp/hotentry/it"'
+
 news() {
-  keywords=('hatebu' 'vim' 'cli' 'linux' 'ruby' 'golang' 'docker')
+  keywords=('vim' 'cli' 'linux' 'ruby' 'golang' 'docker')
   selected=$(printf '%s\n' "${keywords[@]}" | fzf --prompt='Keywords: ')
-  if [[ "$selected" = 'hatebu' ]]; then
-    local url='https://b.hatena.ne.jp/hotentry/it'
-  elif [[ -n "$selected" ]]; then
-    query=$(echo "$selected" | sed 's/ /+/g')
-    local url="https://www.google.com/search?q=${query}&tbs=qdr:w"
-  fi
-  [[ -n "$selected" ]] && open "$url"
+  [[ -n "$selected" ]] && open "https://www.google.com/search?q=$(echo "$selected" | sed 's/ /+/g')&tbs=qdr:w"
 }
 
 openlinks() {
