@@ -124,6 +124,10 @@ fn() {
   [[ -n "$selection" ]] && print -z "$selection"
 }
 
+ggl() {
+  open "https://google.co.jp/search?q=$(printf "%s+" "$@")"
+}
+
 # --- Generators ---
 uuid() {
   uuidgen | tr \[:upper:\] \[:lower:\]
