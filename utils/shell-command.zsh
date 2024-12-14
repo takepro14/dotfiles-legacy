@@ -86,9 +86,10 @@ vimd() {
 alias hatebu='open "https://b.hatena.ne.jp/hotentry/it"'
 
 news() {
-  keywords=('vim' 'cli' 'linux' 'ruby' 'golang' 'docker')
-  selected=$(printf '%s\n' "${keywords[@]}" | fzf --prompt='Keywords: ')
-  [[ -n "$selected" ]] && open "https://www.google.com/search?q=$(echo "$selected" | sed 's/ /+/g')&tbs=qdr:w"
+  local keywords=('vim' 'cli' 'linux' 'ruby' 'golang' 'docker')
+  for keyword in "${keywords[@]}"; do
+    open "https://google.co.jp/search?q=${keyword}&tbs=qdr:w"
+  done
 }
 
 openlinks() {
