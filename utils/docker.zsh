@@ -18,8 +18,18 @@ drm() {
   docker rm -vf $(docker ps -aq)
 }
 
+# ex. drmi | drmi auto
 drmi() {
-  docker rmi $(docker images -f "dangling=true" -q)
+  if [[ "$1" == 'auto' ]]; then
+    docker rmi $(docker images -f "dangling=true" -q)
+  else
+    images=$(
+      docker images --format "{{.Repository}}:{{.Tag}} {{.CreatedSince}} {{.Size}} {{.ID}}" \
+      | column -t \
+      | fzf --multi --prompt="Remove image: "
+    )
+    [[ -n "$images" ]] && docker rmi $(echo "$images" | awk '{print $NF}' | xargs -r echo)
+  fi
 }
 
 drmv() {
