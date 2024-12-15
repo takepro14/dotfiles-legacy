@@ -45,7 +45,30 @@ return {
     -- Setup handlers for installed all LSP servers
     require('mason-lspconfig').setup_handlers({
       function(server_name)
-        require('lspconfig')[server_name].setup({ capabilities = capabilities })
+        local opts = { capabilities = capabilities }
+
+        if server_name == 'gopls' then
+          opts.settings = {
+            gopls = {
+              analyses = {
+                unusedparams = true,
+              },
+              staticcheck = true,
+            },
+          }
+          opts.on_attach = function(client, bufnr)
+            if client.server_capabilities.documentFormattingProvider then
+              vim.api.nvim_create_autocmd('BufWritePre', {
+                buffer = bufnr,
+                callback = function()
+                  vim.lsp.buf.format({ async = false })
+                end,
+              })
+            end
+          end
+        end
+
+        require('lspconfig')[server_name].setup(opts)
       end,
     })
   end,

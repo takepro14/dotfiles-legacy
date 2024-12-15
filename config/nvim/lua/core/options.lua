@@ -34,7 +34,7 @@ opt.smartindent = true
 opt.expandtab = true
 opt.linebreak = true
 opt.list = true
-opt.listchars = { space = '·' }
+opt.listchars = { space = '·', tab = '> ' }
 opt.ttimeoutlen = 1
 opt.virtualedit = 'onemore'
 opt.visualbell = true
