@@ -23,8 +23,9 @@ cdf() {
 }
 
 rmf() {
-  local file=$(_selected_file)
-  [[ -n "$file" ]] && rm "$file" && echo "$file is removed."
+  local files=$(_selected_files)
+  local file_count=$(echo "$files" | wc -l | awk '{print $1}')
+  [[ -n "$file" ]] && rm $(echo "$files") && echo "$file_count files is removed."
 }
 
 # --- Environment Management ---
@@ -180,5 +181,11 @@ _selected_file() {
   local prompt_arg=()
   [[ -n "$1" ]] && prompt_arg=(--prompt "$1")
   fzf "${prompt_arg[@]}" --preview 'bat --theme=Dracula --style=numbers --color=always {}'
+}
+
+_selected_files() {
+  local prompt_arg=()
+  [[ -n "$1" ]] && prompt_arg=(--prompt "$1")
+  fzf "${prompt_arg[@]}" --multi --preview 'bat --theme=Dracula --style=numbers --color=always {}'
 }
 
