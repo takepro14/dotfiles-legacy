@@ -82,6 +82,12 @@ vimd() {
   nvim -d $file1 $file2
 }
 
+vimperf() {
+  local filename=$(date +"startuptime_%Y-%m-%d_%H:%M:%S.log")
+  vim --startuptime "$filename" +q
+  nvim "$filename"
+}
+
 # --- Useful Tools ---
 alias hatebu='open "https://b.hatena.ne.jp/hotentry/it"'
 
