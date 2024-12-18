@@ -13,7 +13,7 @@ return {
       enable_autosnippets = true,                -- 自動スニペットを有効化
     })
 
-    require('luasnip.loaders.from_lua').load({
+    require('luasnip.loaders.from_lua').lazy_load({
       paths = vim.fn.expand('$HOME/.dotfiles/config/nvim/snippets'),
     })
   end,
