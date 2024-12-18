@@ -75,5 +75,4 @@ for trigger, lines in pairs(codes) do
   )
 end
 
--- ls.add_snippets('sh', snippets)
 return snippets
