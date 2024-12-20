@@ -34,8 +34,6 @@ return {
       enable = true,
     },
     filters = {
-      git_ignored = true,
-      dotfiles = false,
       custom = { '^.git$', 'node_modules' },
     },
   },
