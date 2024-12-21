@@ -168,12 +168,18 @@ _url_opener() {
     local target=$(jq -r '.[] | "\(.url)"' "$json_file" | shuf -n 1)
     [[ -n "$target" ]] && open "$target"
   else
-    local target=$(
-    jq -r 'sort_by(.tag) | .[] | "\(.tag)\t\(.title)\t\(.url)\t\(.comment)"' "$json_file" | \
-      fzf --preview="printf 'Tag: %s\nTitle: %s\nURL: %s\nComment: %s\n' {1} {2} {3} {4}" \
-          --preview-window=up:4 --delimiter=$'\t' --prompt="$prompt_msg"
+    local targets=(); while IFS= read -r line; do
+      targets+=("$line")
+    done < <(
+      jq -r 'sort_by(.tag) | .[] | "\(.tag)\t\(.title)\t\(.url)\t\(.comment)"' "$json_file" | \
+        fzf --multi --preview="printf 'Tag: %s\nTitle: %s\nURL: %s\nComment: %s\n' {1} {2} {3} {4}" \
+            --preview-window=up:4 --delimiter=$'\t' --prompt="$prompt_msg"
     )
-    [[ -n "$target" ]] && open "$(echo "$target" | awk -F'\t' '{print $3}')"
+    [[ ${#targets[@]} -eq 0 ]] && return 1
+    for target in "${targets[@]}"; do
+      url=$(echo "$target" | awk -F'\t' '{print $3}')
+      open "$url"
+    done
   fi
 }
 
