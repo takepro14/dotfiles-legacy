@@ -3,6 +3,7 @@ vim.cmd.colorscheme('dracula')
 vim.cmd([[
   highlight Normal                    guibg=NONE ctermbg=NONE
   highlight NonText                   guibg=NONE ctermbg=NONE
+  highlight NormalFloat               guibg=NONE ctermbg=NONE
   highlight Visual                    guibg=#6272A4 guifg=NONE
   highlight NvimTreeNormal            guibg=NONE ctermbg=NONE
   highlight BufferLineFill            guibg=NONE ctermbg=NONE
