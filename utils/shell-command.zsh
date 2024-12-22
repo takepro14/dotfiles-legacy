@@ -110,14 +110,28 @@ openlinks() {
   done
 }
 
-sites() {
-  local json_file="$UTILS_CONFIG_DIR/.local.sites.json" prompt_msg='Site: ' random=${1:+random}
-  [[ -f "$json_file" ]] && _url_opener "$json_file" "$prompt_msg" "$random"
-}
+# ex. urls | urls 1
+urls() {
+  local json_file="$UTILS_CONFIG_DIR/.local.urls.json" random=${1:+random}
+  [[ ! -f "$json_file" ]] && return 1
 
-articles() {
-  local json_file="$UTILS_CONFIG_DIR/.local.articles.json" prompt_msg='Articles: ' random=${1:+random}
-  [[ -f "$json_file" ]] && _url_opener "$json_file" "$prompt_msg" "$random"
+  if [[ -n "$random" ]]; then
+    local target=$(jq -r '.[] | "\(.url)"' "$json_file" | shuf -n 1)
+    [[ -n "$target" ]] && open "$target"
+  else
+    local targets=(); while IFS= read -r line; do
+      targets+=("$line")
+    done < <(
+    jq -r 'sort_by([.tag, .kind]) | .[] | "\(.tag)\t\(.kind)\t\(.title)\t\(.url)\t\(.comment)\t"' "$json_file" | \
+        fzf --multi --preview="printf 'Tag: %s\nKind: %s\nTitle: %s\nURL: %s\nComment: %s\n' {1} {2} {3} {4} {5}" \
+            --preview-window=up:5 --delimiter=$'\t' --prompt='Url: '
+    )
+    [[ ${#targets[@]} -eq 0 ]] && return 1
+    for target in "${targets[@]}"; do
+      url=$(echo "$target" | awk -F'\t' '{print $4}')
+      open "$url"
+    done
+  fi
 }
 
 repcmd() {
@@ -161,27 +175,6 @@ ipv4() {
 }
 
 # --- Private functions ---
-
-_url_opener() {
-  local json_file="$1" prompt_msg="$2" random=${3:+random}
-  if [[ -n "$random" ]]; then
-    local target=$(jq -r '.[] | "\(.url)"' "$json_file" | shuf -n 1)
-    [[ -n "$target" ]] && open "$target"
-  else
-    local targets=(); while IFS= read -r line; do
-      targets+=("$line")
-    done < <(
-      jq -r 'sort_by(.tag) | .[] | "\(.tag)\t\(.title)\t\(.url)\t\(.comment)"' "$json_file" | \
-        fzf --multi --preview="printf 'Tag: %s\nTitle: %s\nURL: %s\nComment: %s\n' {1} {2} {3} {4}" \
-            --preview-window=up:4 --delimiter=$'\t' --prompt="$prompt_msg"
-    )
-    [[ ${#targets[@]} -eq 0 ]] && return 1
-    for target in "${targets[@]}"; do
-      url=$(echo "$target" | awk -F'\t' '{print $3}')
-      open "$url"
-    done
-  fi
-}
 
 _selected_file() {
   local prompt_arg=()
