@@ -48,6 +48,7 @@ eval "$(nodenv init -)"
 eval "$(rbenv init - zsh)"
 source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+colima status > /dev/null 2>&1 || colima start
 
 # Language specific utilities
 for file in $HOME/.dotfiles/utils/*.zsh; do
