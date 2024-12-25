@@ -53,6 +53,7 @@ zc() {
 }
 
 # --- Git Commands ---
+alias g='git'
 alias repo='cd $(ghq list -p | fzf)'
 alias pullreq='gh pr view --web'
 
