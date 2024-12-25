@@ -55,7 +55,16 @@ zc() {
 # --- Git Commands ---
 alias repo='cd $(ghq list -p | fzf)'
 alias pullreq='gh pr view --web'
-alias ghrepo='gh repo view --web'
+
+# ex. ghrepo | ghrepo new
+ghrepo() {
+  if [[ "$1" == "new" ]]; then
+    local repo_name=$(basename "$(pwd)")
+    gh repo create "$repo_name" --private --source=.
+    git push -u origin main
+  fi
+  gh repo view --web
+}
 
 # --- System Info & Process Management ---
 alias sysinfo='neofetch'
