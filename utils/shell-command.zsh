@@ -57,14 +57,18 @@ alias g='git'
 alias repo='cd $(ghq list -p | fzf)'
 alias pullreq='gh pr view --web'
 
-# ex. ghrepo | ghrepo new
+# ex. ghrepo | ghrepo create | ghrepo clone
 ghrepo() {
-  if [[ "$1" == "new" ]]; then
+  if [[ -z "$1" ]]; then
+    gh repo view --web
+  elif [[ "$1" == "create" ]]; then
     local repo_name=$(basename "$(pwd)")
-    gh repo create "$repo_name" --private --source=.
-    git push -u origin main
+    gh repo create "$repo_name" --private --source=. --push
+  elif [[ "$1" == "clone" ]]; then
+    local username=$(git config --global user.name)
+    local reponame=$(gh repo list "$username" | fzf | awk '{print $1}')
+    [[ -n "$reponame" ]] && ghq get "$reponame"
   fi
-  gh repo view --web
 }
 
 # --- System Info & Process Management ---
