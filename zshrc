@@ -42,7 +42,6 @@ bindkey -e  # enable emacs style key bind
 # Language specific settings
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 eval "$(/opt/homebrew/bin/brew shellenv)"
-eval "$(hub alias -s)"
 source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 colima status > /dev/null 2>&1 || colima start
