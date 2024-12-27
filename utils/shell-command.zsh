@@ -72,9 +72,6 @@ ghrepo() {
 }
 
 # --- System Info & Process Management ---
-alias sysinfo='neofetch'
-alias monitor='htop -s PERCENT_CPU'
-
 killp() {
   local cpu_col=3
   local pid=$(ps aux | sort -rk $cpu_col | fzf --header="$(ps aux | head -n 1)" | awk '{print $2}')
