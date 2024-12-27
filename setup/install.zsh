@@ -39,3 +39,5 @@ source ${HOME}/.zshrc
 
 # Install brew packages
 cd ${HOME} && brew bundle --file=${HOME}/.dotfiles/setup/Brewfile
+brew link --force python
+brew link --force ruby
