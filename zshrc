@@ -40,13 +40,9 @@ bindkey "^N" down-line-or-history
 bindkey -e  # enable emacs style key bind
 
 # Language specific settings
-export PATH="$HOME/.nodenv/bin:$PATH"
-export GOPATH=$HOME/go
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(hub alias -s)"
-eval "$(nodenv init -)"
-eval "$(rbenv init - zsh)"
 source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 colima status > /dev/null 2>&1 || colima start
