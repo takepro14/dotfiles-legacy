@@ -6,6 +6,7 @@
   excludesfile = ~/.gitignore_global
 [alias]
   a = add
+  p = push
   co = !git branch | fzf | xargs git switch
   rmb = !git branch | fzf | xargs git branch -D
   sw = switch
