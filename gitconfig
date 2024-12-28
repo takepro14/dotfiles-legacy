@@ -4,36 +4,5 @@
   name = takepro14
 [core]
   excludesfile = ~/.gitignore_global
-[alias]
-  a = add
-  p = push
-  co = !git branch | fzf | xargs git switch
-  rmb = !git branch | fzf | xargs git branch -D
-  sw = switch
-  br = branch
-  cm = commit
-  st = status
-  save = commit -m
-  resave = commit --amend -m
-  re = restore
-  unstage = reset HEAD
-  uncommit = reset --soft HEAD^
-  hashes = log --no-merges --date=short --pretty='format:%C(yellow)%h %C(green)%cd %C(blue)%an%C(red)%d %C(reset)%s'
-  graph = log --graph -10 --branches --remotes --tags  --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %ar) %Cred%d' --date-order
-  prestage = diff -w
-  branches = branch -a
-  stashes = stash list
-  hub = browse
-  diffpick = !git diff --color=always $(git diff --name-only | fzf)
-  addpick = !git add $(git status -s | sed 's/^?? / U /' | fzf -m | awk '{print $NF}')
-  loc = "!f() { \
-    read -p 'Start Date (default: 2024-01-01): ' start_date; \
-    read -p 'End Date (default: 2024-12-31): ' end_date; \
-    start_date=${start_date:-2024-01-01}; \
-    end_date=${end_date:-2024-12-31}; \
-    git log --numstat --pretty='%H' --author=\"$(git config user.name)\" \
-    --since=\"$start_date\" --until=\"$end_date\" --no-merges | \
-    awk 'NF==3 {add+=$1; del+=$2} END {printf(\"%d (+%d, -%d)\\n\", add+del, add, del)}'; \
-  }; f"
 [commit]
   template = ~/.gitmessage
