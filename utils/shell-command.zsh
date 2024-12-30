@@ -82,50 +82,6 @@ vimperf() {
 }
 
 # --- Useful Tools ---
-alias hatebu='open "https://b.hatena.ne.jp/hotentry/it"'
-
-news() {
-  local keywords=('vim' 'cli' 'linux' 'ruby' 'golang' 'docker')
-  for keyword in "${keywords[@]}"; do
-    open "https://google.co.jp/search?q=${keyword}&tbs=qdr:w"
-  done
-}
-
-openlinks() {
-  local json_file="$UTILS_CONFIG_DIR/.local.links.json"
-  [[ ! -f "$json_file" ]] && echo "Error: File '$json_file' not found." && return 1
-  local browser=$(jq -r '.browser' "$json_file")
-  local links=$(jq -r '.links | to_entries[] | "\(.key)\t\(.value)"' "$json_file")
-  echo "$links" | while IFS=$'\t' read -r key url; do
-    echo "Open: $key"
-    open -a "$browser" "$url"
-  done
-}
-
-# ex. urls | urls 1
-urls() {
-  local json_file="$UTILS_CONFIG_DIR/.local.urls.json" random=${1:+random}
-  [[ ! -f "$json_file" ]] && return 1
-
-  if [[ -n "$random" ]]; then
-    local target=$(jq -r '.[] | "\(.url)"' "$json_file" | shuf -n 1)
-    [[ -n "$target" ]] && open "$target"
-  else
-    local targets=(); while IFS= read -r line; do
-      targets+=("$line")
-    done < <(
-    jq -r 'sort_by([.tag, .kind]) | .[] | "\(.tag)\t\(.kind)\t\(.title)\t\(.url)\t\(.comment)\t"' "$json_file" | \
-        fzf --multi --preview="printf 'Tag: %s\nKind: %s\nTitle: %s\nURL: %s\nComment: %s\n' {1} {2} {3} {4} {5}" \
-            --preview-window=up:5 --delimiter=$'\t' --prompt='Url: '
-    )
-    [[ ${#targets[@]} -eq 0 ]] && return 1
-    for target in "${targets[@]}"; do
-      url=$(echo "$target" | awk -F'\t' '{print $4}')
-      open "$url"
-    done
-  fi
-}
-
 repcmd() {
   read 'cmd?Command: '; read 'interval?Interval (sec): '
   while true; do eval "$cmd"; sleep "$interval"; done;
@@ -136,10 +92,6 @@ fn() {
   local fns=$(declare -f | grep -Ev '^_|^git_|^prompt_' | grep '^[a-zA-Z_][a-zA-Z0-9_]* ()' | awk '{print $1}')
   local selection=$(printf "%s\n%s" "$als" "$fns" | fzf --prompt="Alias or Function: ")
   [[ -n "$selection" ]] && print -z "$selection"
-}
-
-ggl() {
-  open "https://google.co.jp/search?q=$(printf "%s+" "$@")"
 }
 
 # --- Generators ---
