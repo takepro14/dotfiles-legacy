@@ -8,6 +8,8 @@ alias ga='git add'
 alias gd='git diff'
 alias gp='git push'
 alias gl='git log'
+alias gf='git fetch'
+alias gm='git merge'
 alias gcm='git commit'
 alias gst='git status'
 alias gsh='git stash'
@@ -16,6 +18,11 @@ alias gbr='git branch'
 alias gre='git restore'
 alias gus='git reset HEAD' # unstage
 alias guc='git reset --soft HEAD^' # uncommit
+
+# untrack
+gut() {
+  fzf | xargs git rm --cached -r
+}
 
 gco() {
   git branch | fzf | xargs git switch
