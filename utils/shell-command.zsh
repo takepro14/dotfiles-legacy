@@ -2,8 +2,6 @@
 # Shell commands utilities
 # ===================================
 
-local UTILS_CONFIG_DIR=$HOME/.dotfiles/utils/config/
-
 # --- File Operations  ---
 alias ls='ls -G'
 alias ll="ls -lG -D '%y-%m-%d %H:%M'"
