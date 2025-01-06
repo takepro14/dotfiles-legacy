@@ -16,8 +16,12 @@ alias gsh='git stash'
 alias gsw='git switch'
 alias gbr='git branch'
 alias gre='git restore'
-alias gus='git reset HEAD' # unstage
 alias guc='git reset --soft HEAD^' # uncommit
+
+# unstage
+gus() {
+  git diff --cached --name-only | fzf --multi | xargs git restore --staged
+}
 
 # untrack
 gut() {
