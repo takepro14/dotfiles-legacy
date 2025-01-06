@@ -15,12 +15,28 @@ alias gst='git status'
 alias gsh='git stash'
 alias gsw='git switch'
 alias gbr='git branch'
-alias gre='git restore'
-alias guc='git reset --soft HEAD^' # uncommit
+
+# unchange
+guch() {
+  git diff --name-only | fzf --multi | xargs git restore
+}
 
 # unstage
 gus() {
   git diff --cached --name-only | fzf --multi | xargs git restore --staged
+}
+
+# uncommit
+gucm() {
+  ! git cherry -v | grep -q '^+' && echo "Last commit is already pushed." && return 1
+  read "target?Enter reset target [c/cs/csw]: "
+  case "$target" in
+    c) option="--soft" ;;
+    cs) option="--mixed" ;;
+    csw) option="--hard" ;;
+    *) echo "Invalid argument." && return 1 ;;
+  esac
+  git reset $option HEAD\^
 }
 
 # untrack
