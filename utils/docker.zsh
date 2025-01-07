@@ -7,15 +7,18 @@ alias dp='docker ps'
 alias di='docker images'
 
 dsh() {
-  docker run --rm -it $(docker images | fzf | awk "{print \$3}") sh
+  local image_id=$(docker images | fzf | awk "{print \$3}")
+  [[ -n "$image_id" ]] && docker run --rm -it "$image_id" sh
 }
 
 dat() {
-  docker attach $(docker ps | fzf | awk "{print \$1}")
+  local container_id=$(docker ps | fzf | awk "{print \$1}")
+  [[ -n "$container_id" ]] && docker attach "$container_id"
 }
 
 drm() {
-  docker rm -vf $(docker ps -aq)
+  local container_ids=$(docker ps -aq)
+  [[ -n "$container_ids" ]] && docker rm -vf $container_ids
 }
 
 # ex. drmi | drmi auto
@@ -33,7 +36,8 @@ drmi() {
 }
 
 drmv() {
-  docker volume rm $(docker volume ls -qf dangling=true)
+  local volumes=$(docker volume ls -qf dangling=true)
+  [[ -n "$volumes" ]] && docker volume rm "$volumes"
 }
 
 dnginx() {
