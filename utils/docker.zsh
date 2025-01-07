@@ -3,8 +3,14 @@
 # ===================================
 
 # --- Docker Commands ---
-alias dp='docker ps'
-alias di='docker images'
+alias d='docker'
+alias db='docker build'
+alias dr='docker run'
+alias dn='docker network'
+alias dim='docker images'
+alias din='docker inspect'
+alias dpl='docker pull'
+alias dps='docker ps'
 
 dsh() {
   local image_id=$(docker images | fzf | awk "{print \$3}")
@@ -14,6 +20,11 @@ dsh() {
 dat() {
   local container_id=$(docker ps | fzf | awk "{print \$1}")
   [[ -n "$container_id" ]] && docker attach "$container_id"
+}
+
+dl() {
+  local container_id=$(docker ps -a | fzf | awk "{print \$1}")
+  [[ -n "$container_id" ]] && docker logs "$container_id"
 }
 
 drm() {
