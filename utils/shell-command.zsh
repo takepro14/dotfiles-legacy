@@ -15,9 +15,14 @@ mkcd() {
   mkdir -p $1 && cd $_;
 }
 
-cdf() {
-  local dir=$(find . -type d -not -path '*/.git*' | fzf --preview "ls -la {}")
-  [[ -n "$dir" ]] && cd "$dir"
+# ex. cd | cd <path/to/dir> | cd to
+cd() {
+  if [[ "$1" == 'to' ]]; then
+    local dir=$(find . -type d -not -path '*/.git*' | fzf --preview "ls -la {}")
+    [[ -n "$dir" ]] && cd "$dir"
+  else
+    builtin cd "$@"
+  fi
 }
 
 rmf() {
