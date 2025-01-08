@@ -94,17 +94,17 @@ fn() {
 
 # --- Generators ---
 uuid() {
-  uuidgen | tr \[:upper:\] \[:lower:\]
+  uuidgen | tr \[:upper:\] \[:lower:\] | _print_and_copy
 }
 
 keygen() {
   read 'length?Length (default: 12): '; local length=${length:-12}
-  openssl rand -base64 "$length" | tee >(pbcopy) && echo 'Copied!'
+  openssl rand -base64 "$length" | _print_and_copy
 }
 
 b64() {
   read 'string?String: '; read 'mode?Encode or Decode? (e/d): '
-  echo "$string" | base64 $([[ $mode =~ ^[Dd]$ ]] && echo "-d") | tee >(pbcopy) && echo 'Copied!'
+  echo "$string" | base64 $([[ $mode =~ ^[Dd]$ ]] && echo "-d") | _print_and_copy
 }
 
 # --- Network Utilities ---
@@ -128,5 +128,9 @@ _selected_files() {
   local prompt_arg=()
   [[ -n "$1" ]] && prompt_arg=(--prompt "$1")
   fzf "${prompt_arg[@]}" --multi --preview 'bat --theme=Dracula --style=numbers --color=always {}'
+}
+
+_print_and_copy() {
+  tee >(pbcopy) && echo 'Copied!'
 }
 
