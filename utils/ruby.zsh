@@ -1,14 +1,36 @@
 # Ruby utilities
 
-alias rubocop='docker compose run --rm app bundle exec rubocop -a'
-alias rspec='docker compose run --rm -e "RAILS_ENV=test" app bundle exec rspec'
-alias console='docker compose run --rm app bin/rails c'
-alias consolet='docker compose run --rm -e "RAILS_ENV=test" app bin/rails c'
-alias dbconsole='docker compose run --rm app bin/rails dbconsole'
-alias routes='docker compose run --rm app bin/rake routes'
-alias ridgepole='docker compose run --rm app bin/rake ridgepole:apply'
-alias ridgepolet='docker compose run --rm -e "RAILS_ENV=test" app bin/rake ridgepole:apply'
-alias run='docker compose run --rm app'
+rubocop() {
+  docker compose run --rm app bundle exec rubocop -a
+}
+
+routes() {
+  docker compose run --rm app bin/rake routes
+}
+
+rspec() {
+  docker compose run --rm -e "RAILS_ENV=test" app bundle exec rspec
+}
+
+console() {
+  if [[ "$1" == 't' ]]; then
+    docker compose run --rm -e "RAILS_ENV=test" app bin/rails c
+  else
+    docker compose run --rm app bin/rails c
+  fi
+}
+
+dbconsole() {
+  docker compose run --rm app bin/rails dbconsole
+}
+
+ridgepole() {
+  if [[ "$1" == 't' ]]; then
+    docker compose run --rm -e "RAILS_ENV=test" app bin/rake ridgepole:apply
+  else
+    docker compose run --rm app bin/rake ridgepole:apply
+  fi
+}
 
 cleanup() {
   rm -f tmp/pids/server.pid && \
