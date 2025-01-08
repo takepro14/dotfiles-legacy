@@ -62,7 +62,7 @@ ggr() {
 }
 
 gd() {
-  if [[ $# -eq 0 ]]; then
+  if [[ "$#" -eq 0 ]]; then
     git diff --color=always $(git diff --name-only | fzf -m)
   else
     git diff "$@"
@@ -70,7 +70,7 @@ gd() {
 }
 
 ga() {
-  if [[ $# -eq 0 ]]; then
+  if [[ "$#" -eq 0 ]]; then
     git add $(git status -s | sed 's/^?? / U /' | fzf -m | awk '{print $NF}')
   else
     git add "$@"
