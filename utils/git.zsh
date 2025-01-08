@@ -17,12 +17,12 @@ alias gbr='git branch'
 
 # unchange
 guch() {
-  git diff --name-only | fzf --multi | xargs git restore
+  git diff --name-only | fzf -m | xargs git restore
 }
 
 # unstage
 gus() {
-  git diff --cached --name-only | fzf --multi | xargs git restore --staged
+  git diff --cached --name-only | fzf -m | xargs git restore --staged
 }
 
 # uncommit
