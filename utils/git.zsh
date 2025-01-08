@@ -4,7 +4,6 @@ local GIT_USERNAME=$(git config user.name)
 
 # --- Git (Local Repo) ---
 alias g='git'
-alias gd='git diff'
 alias gp='git push'
 alias gl='git log'
 alias gf='git fetch'
@@ -62,8 +61,12 @@ ggr() {
     --date-order
 }
 
-gdf() {
-  git diff --color=always $(git diff --name-only | fzf)
+gd() {
+  if [[ $# -eq 0 ]]; then
+    git diff --color=always $(git diff --name-only | fzf -m)
+  else
+    git diff "$@"
+  fi
 }
 
 ga() {
