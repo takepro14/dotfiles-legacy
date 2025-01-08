@@ -27,8 +27,15 @@ rmf() {
 }
 
 # --- Environment Management ---
-alias load='set -a; source ./.env; set +a;'
-alias paths="echo ${PATH} | tr ':' '\n'"
+load() {
+  set -a
+  source ./.env;
+  set +a;
+}
+
+paths() {
+  echo ${PATH} | tr ':' '\n'
+}
 
 swsh() {
   echo "Current shell: $SHELL"
