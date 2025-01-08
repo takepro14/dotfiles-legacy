@@ -3,11 +3,11 @@
 # ===================================
 
 alias tmls='tmux ls'
-alias tmk='tmux kill-session'
+alias tmk='tmux kill-server'
 alias tma='tmux attach'
 
 tmux!() {
-  tmux kill-session
+  tmux kill-server
   local session_name='🧛‍♂️ takepro14'
   tmux new-session -d -s "$session_name" -n '.' -c "${HOME}/.dotfiles"
   tmux new-window -t "$session_name" -n 'Dropbox' -c "${HOME}/Dropbox"
