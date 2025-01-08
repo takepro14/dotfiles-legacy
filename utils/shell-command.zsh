@@ -93,10 +93,17 @@ repcmd() {
 }
 
 fn() {
-  local als=$(alias | awk -F'=' '{print $1}')
+  local als=$(alias | awk -F'=' '{print $1}' | sed 's/^alias //')
   local fns=$(declare -f | grep -Ev '^_|^git_|^prompt_' | grep '^[a-zA-Z_][a-zA-Z0-9_]* ()' | awk '{print $1}')
-  local selection=$(printf "%s\n%s" "$als" "$fns" | fzf --prompt="Alias or Function: ")
-  [[ -n "$selection" ]] && print -z "$selection"
+  local all=$(printf "%s\n%s" "$als" "$fns" | sort -u)
+  if [[ "$1" == 'ls' ]]; then
+    echo "$all" | tr '\n' ' '
+  elif [[ -z "$1" ]]; then
+    local selection=$(echo "$all" | fzf --prompt="Alias or Function: ")
+    [[ -n "$selection" ]] && print -z "$selection"
+  else
+    echo "Usage: fn [ls]"
+  fi
 }
 
 # --- Generators ---
