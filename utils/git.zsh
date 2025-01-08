@@ -4,7 +4,6 @@ local GIT_USERNAME=$(git config user.name)
 
 # --- Git (Local Repo) ---
 alias g='git'
-alias ga='git add'
 alias gd='git diff'
 alias gp='git push'
 alias gl='git log'
@@ -67,8 +66,12 @@ gdf() {
   git diff --color=always $(git diff --name-only | fzf)
 }
 
-gaf() {
-  git add $(git status -s | sed 's/^?? / U /' | fzf -m | awk '{print $NF}')
+ga() {
+  if [[ $# -eq 0 ]]; then
+    git add $(git status -s | sed 's/^?? / U /' | fzf -m | awk '{print $NF}')
+  else
+    git add "$@"
+  fi
 }
 
 gloc() {
