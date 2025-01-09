@@ -16,6 +16,7 @@ return {
         'lua_ls',
         'apex_ls',
         'clangd',
+        'emmet_ls',
       },
     })
     -- Capabilities that LSP clients want the LSP server to provide
