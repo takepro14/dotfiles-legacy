@@ -7,14 +7,16 @@ alias tmk='tmux kill-server'
 alias tma='tmux attach'
 
 tmux!() {
-  tmux kill-server
-  local session_name='🧛‍♂️ takepro14'
-  tmux new-session -d -s "$session_name" -n '.' -c "${HOME}/.dotfiles"
-  tmux new-window -t "$session_name" -n 'Dropbox' -c "${HOME}/Dropbox"
-  tmux new-window -t "$session_name" -n 'dev' -c "${HOME}/dev"
-  tmux select-window -t "$session_name"
-  local session=$(tmux ls -F "#{session_name}" | fzf --prompt="Session: ")
-  [[ -n $session ]] && tmux a -t "$session" \; select-window -t "$session:1"
+  tmux kill-server 2>/dev/null
+  local config="$HOME/.dotfiles/utils/config/tmux.json"
+  local name=$(jq -r '.name' "$config")
+  local windows=($(jq -r '.windows[]' "$config"))
+  tmux new-session -d -s "$name" -n "$(basename "${windows[0]}")" -c "${windows[0]}"
+  for window in "${windows[@]:1}"; do
+    tmux new-window -t "$name" -n "$(basename "$window")" -c "$window"
+  done
+  tmux select-window -t "$name:1"
+  tmux attach-session -t "$name"
 }
 
 ide() {
