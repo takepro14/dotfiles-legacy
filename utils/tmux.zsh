@@ -11,7 +11,7 @@ tmux!() {
   local config="$HOME/.dotfiles/utils/config/tmux.json"
   local name=$(jq -r '.name' "$config")
   local windows=($(jq -r '.windows[]' "$config"))
-  tmux new-session -d -s "$name" -n "$(basename "${windows[0]}")" -c "${windows[0]}"
+  tmux new-session -d -s "$name" -n "$(basename "${windows[1]}")" -c "${windows[1]}"
   for window in "${windows[@]:1}"; do
     tmux new-window -t "$name" -n "$(basename "$window")" -c "$window"
   done
