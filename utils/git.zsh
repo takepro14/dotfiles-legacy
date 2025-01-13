@@ -4,6 +4,7 @@ local GIT_USERNAME=$(git config user.name)
 
 # --- Git (Local Repo) ---
 alias g='git'
+alias gi='git init'
 alias gp='git push'
 alias gl='git log'
 alias gf='git fetch'
