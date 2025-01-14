@@ -26,6 +26,11 @@ rmf() {
   [[ -n "$file" ]] && rm $(echo "$files") && echo "$file_count files is removed."
 }
 
+utils() {
+  local utils_dir="$HOME/.dotfiles/utils"
+  ls "$utils_dir" | fzf | xargs -I {} nvim "$utils_dir/{}"
+}
+
 # --- Environment Management ---
 load() {
   set -a
