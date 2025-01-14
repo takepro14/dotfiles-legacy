@@ -11,24 +11,16 @@ tmux!() {
   local config="$HOME/.dotfiles/utils/config/tmux.json"
   local name=$(jq -r '.name' "$config")
   local windows=($(jq -c '.windows[]' "$config" | sed "s|\$HOME|$HOME|g"))
-  tmux new-session -d -s "$name" \
-    -n $(_window_title "${windows[1]}") \
-    -c $(_window_path "${windows[1]}")
+  tmux new-session -d -s "$name"
+    -n $(echo "${windows[1]}" | jq -r '.title') \
+    -c $(echo "${windows[1]}" | jq -r '.path')
   for window in "${windows[@]:1}"; do
     tmux new-window -t "$name" \
-      -n $(_window_title "$window") \
-      -c $(_window_path "$window")
+      -n $(echo "$window" | jq -r '.title') \
+      -c $(echo "$window" | jq -r '.path')
   done
   tmux select-window -t "$name:1"
   tmux attach-session -t "$name"
-}
-
-_window_title() {
-  echo "$1" | jq -r '.title'
-}
-
-_window_path() {
-  echo "$1" | jq -r '.path'
 }
 
 ide() {
