@@ -93,7 +93,8 @@ gloc() {
 }
 
 repo() {
-  cd $(ghq list -p | fzf)
+  local selected=$(ghq list -p | awk '{print $0 " " $0}' | sed -E 's|(.*/)([^/]+/[^/]+)$|\2 \1\2|' | fzf --with-nth=1 --delimiter=" ")
+  [[ -n "$selected" ]] && cd $(echo "$selected" | awk '{print $2}')
 }
 
 
