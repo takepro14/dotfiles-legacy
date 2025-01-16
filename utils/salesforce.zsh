@@ -21,19 +21,19 @@ soql() {
 
 sfpref() {
   local org="$1"
-  [[ "$#" -eq 1 ]] && echo "Usage: sfpref <org>" && return 1
+  [[ ! "$#" -eq 1 ]] && echo "Usage: sfpref <org>" && return 1
   sf data query -q 'SELECT QualifiedApiName, Label, KeyPrefix FROM EntityDefinition' -o $org
 }
 
 sfmeta() {
   local obj="$1" org="$2"
-  [[ "$#" -eq 2 ]] && echo "Usage: sfmeta <obj> <org>" && return 1
+  [[ ! "$#" -eq 2 ]] && echo "Usage: sfmeta <obj> <org>" && return 1
   sf sobject describe -s $obj -o $org
 }
 
 sfcol() {
   local obj="$1" org="$2"
-  [[ "$#" -eq 2 ]] && echo "Usage: sfcol <obj> <org>" && return 1
+  [[ ! "$#" -eq 2 ]] && echo "Usage: sfcol <obj> <org>" && return 1
   sf sobject describe -s $obj -o $org |\
     jq -r '.fields[] | [.label, .name] | @sh' |\
     awk 'BEGIN {print "fields=("} {print "  (" $0 ")"} END {print ")"}'
@@ -41,7 +41,7 @@ sfcol() {
 
 sfacc() {
   local userid="$1" recordid="$2" org="$3"
-  [[ "$#" -eq 3 ]] && echo "Usage: sfacc <userid> <recordid> <org>" && return 1
+  [[ ! "$#" -eq 3 ]] && echo "Usage: sfacc <userid> <recordid> <org>" && return 1
   sf data query -q "SELECT RecordId, HasReadAccess FROM UserRecordAccess WHERE UserId = '$userid' AND RecordId = '$recordid'" -o $org
 }
 
