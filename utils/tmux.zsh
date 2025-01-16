@@ -11,7 +11,7 @@ tmux!() {
   local config="$HOME/.dotfiles/utils/config/tmux.json"
   local name=$(jq -r '.name' "$config")
   local windows=($(jq -c '.windows[]' "$config" | sed "s|\$HOME|$HOME|g"))
-  tmux new-session -d -s "$name"
+  tmux new-session -d -s "$name" \
     -n $(echo "${windows[1]}" | jq -r '.title') \
     -c $(echo "${windows[1]}" | jq -r '.path')
   for window in "${windows[@]:1}"; do
