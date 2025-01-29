@@ -76,7 +76,8 @@ gd() {
 
 ga() {
   if [[ "$#" -eq 0 ]]; then
-    git add $(git status -s | sed 's/^?? / U /' | fzf -m | awk '{print $NF}')
+    changed_files=$(git status -s | sed 's/^?? / U /' | fzf -m | awk '{print $NF}')
+    [[ -n "$changed_files" ]] && git add "$changed_files"
   else
     git add "$@"
   fi
