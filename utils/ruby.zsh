@@ -1,4 +1,6 @@
+# ===================================
 # Ruby utilities
+# ===================================
 
 rubocop() {
   docker compose run --rm app bundle exec rubocop -a
@@ -9,7 +11,7 @@ routes() {
 }
 
 rspec() {
-  docker compose run --rm -e "RAILS_ENV=test" app bundle exec rspec
+  docker compose run --rm -e "RAILS_ENV=test" app bundle exec rspec "$@"
 }
 
 console() {
