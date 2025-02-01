@@ -70,7 +70,7 @@ psk() {
 }
 
 # --- Vim Commands ---
-alias vim='nvim'
+for p in vim vmi ivm imv mvi miv; do alias $p='nvim'; done
 alias vimi='nvim -u ${HOME}/.dotfiles/config/nvim/init-minimal.lua'
 
 vimf() {
