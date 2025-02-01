@@ -22,7 +22,7 @@ guch() {
 
 # unstage
 gus() {
-  git diff --cached --name-only | fzf -m | xargs git restore --staged
+  git diff --staged --name-only | fzf -m | xargs git restore --staged
 }
 
 # uncommit
