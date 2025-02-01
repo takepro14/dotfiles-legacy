@@ -27,15 +27,7 @@ gus() {
 
 # uncommit
 gucm() {
-  ! git cherry -v | grep -q '^+' && echo "Last commit is already pushed." && return 1
-  read "target?Enter reset target [c/cs/csw]: "
-  case "$target" in
-    c) option="--soft" ;;
-    cs) option="--mixed" ;;
-    csw) option="--hard" ;;
-    *) echo "Invalid argument." && return 1 ;;
-  esac
-  git reset $option HEAD\^
+  git reset --soft HEAD\^
 }
 
 # untrack
