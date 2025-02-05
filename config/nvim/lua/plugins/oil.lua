@@ -4,7 +4,6 @@ return {
   lazy = true,
   keys = {
     { '<Leader>o', '<cmd>Oil<CR>', silent = true, desc = 'Open Oil window' },
-    { 'q',         '<cmd>bd<CR>',  silent = true, desc = 'Close Oil window' },
   },
   config = function()
     require('oil').setup({
@@ -15,6 +14,13 @@ return {
       win_options = {
         signcolumn = 'yes:2',
       },
+    })
+
+    vim.api.nvim_create_autocmd('FileType', {
+      pattern = 'oil',
+      callback = function()
+        vim.keymap.set('n', 'q', '<cmd>bd<CR>', { buffer = true, silent = true, desc = 'Close Oil window' })
+      end,
     })
   end,
 }
