@@ -1,4 +1,5 @@
 # Zplug
+
 source ~/.zplug/init.zsh
 zplug "mafredri/zsh-async", from:github
 zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
@@ -44,7 +45,9 @@ export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 eval "$(/opt/homebrew/bin/brew shellenv)"
 source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-colima status > /dev/null 2>&1 || colima start
+
+# Launch docker engine
+! pgrep -f "Docker.app" > /dev/null && open -a Docker
 
 # Language specific utilities
 for file in $HOME/.dotfiles/utils/*.zsh; do
