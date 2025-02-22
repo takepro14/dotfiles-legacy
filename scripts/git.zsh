@@ -97,7 +97,7 @@ ghrepo() {
     gh repo view --web
   elif [[ "$1" == "create" ]]; then
     local repo_name=$(basename "$(pwd)")
-    gh repo create "$repo_name" --private --source=. --push
+    gh repo create "$repo_name" --public --source=. --push
   elif [[ "$1" == "clone" ]]; then
     local username="$GIT_USERNAME"
     local reponame=$(gh repo list "$username" | fzf | awk '{print $1}')
