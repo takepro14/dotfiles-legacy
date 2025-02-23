@@ -49,7 +49,7 @@ source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.
 ! pgrep -f "Docker.app" > /dev/null && open -a Docker
 
 # Language specific utilities
-for file in $HOME/.dotfiles/utils/*.zsh; do
+for file in $HOME/.dotfiles/scripts/*.zsh; do
   [ -f "$file" ] && source "$file"
 done
 
