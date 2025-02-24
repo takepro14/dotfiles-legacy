@@ -27,7 +27,7 @@ _kctx() {
   kubectl config unset current-context > /dev/null 2>&1
   export REGION_NAME=asia-northeast1
   export CLUSTER_NAME=$(gcloud container clusters list --format 'value(name)' --limit 1 2>/dev/null)
-  if [ ! -z $CLUSTER_NAME ]; then
+  if [[ ! -z $CLUSTER_NAME ]]; then
     gcloud container clusters get-credentials \
       --region $REGION_NAME $CLUSTER_NAME > /dev/null 2>&1
   fi
@@ -35,7 +35,7 @@ _kctx() {
 
 _gcfg() {
   echo -e "project: $(gcloud config get-value project)"
-  if [ ! -z $CLUSTER_NAME ]; then
+  if [[ ! -z $CLUSTER_NAME ]]; then
     echo -e "context: $(kubectl config current-context)"
   else
     echo -e "context: "
