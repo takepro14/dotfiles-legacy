@@ -8,7 +8,7 @@ alias tma='tmux attach'
 
 tmux!() {
   tmux kill-server 2>/dev/null
-  local config="$HOME/.dotfiles/utils/config/tmux.json"
+  local config="$HOME/.dotfiles/scripts/config/tmux.json"
   local name=$(jq -r '.name' "$config")
   local windows=($(jq -c '.windows[]' "$config" | sed "s|\$HOME|$HOME|g"))
   tmux new-session -d -s "$name" \
