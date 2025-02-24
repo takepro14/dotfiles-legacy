@@ -106,3 +106,12 @@ ghpr() {
   gh pr view --web
 }
 
+# ex. ghcm | ghcm <commit-hash>
+ghcm() {
+  if [[ -z "$1" ]]; then
+    git log --oneline --abbrev-commit | fzf | awk '{print $1}' | xargs gh browse
+  else
+    gh browse "$1"
+  fi
+}
+
