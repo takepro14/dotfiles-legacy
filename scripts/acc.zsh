@@ -7,7 +7,7 @@ abc() {
 
   cd ${pj_root}
 
-  if [ ! -d "${contest_dir}" ]; then
+  if [[ ! -d "${contest_dir}" ]]; then
     acc new ${contest_dir}
   else
     acc add

@@ -50,8 +50,8 @@ source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.
 
 # Language specific utilities
 for file in $HOME/.dotfiles/scripts/*.zsh; do
-  [ -f "$file" ] && source "$file"
+  [[ -f "$file" ]] && source "$file"
 done
 
-[ -f ~/.zshrc.local ] && source ~/.zshrc.local
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
