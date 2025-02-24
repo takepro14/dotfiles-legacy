@@ -6,7 +6,6 @@ local GIT_USERNAME=$(git config user.name)
 alias g='git'
 alias gi='git init'
 alias gp='git push'
-alias gl='git log'
 alias gf='git fetch'
 alias gm='git merge'
 alias gcm='git commit'
@@ -43,15 +42,17 @@ grmb() {
   git branch | fzf | xargs git branch -D
 }
 
-ghs() {
-  git log --no-merges --date=short \
-    --pretty='format:%C(yellow)%h %C(green)%cd %C(blue)%an%C(red)%d %C(reset)%s'
-}
-
-ggr() {
-  git log --graph -10 --branches --remotes --tags  \
-    --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %ar) %Cred%d' \
-    --date-order
+gl() {
+  if [[ "$1" == "hash" ]]; then
+    git log --no-merges --date=short \
+      --pretty='format:%C(yellow)%h %C(green)%cd %C(blue)%an%C(red)%d %C(reset)%s'
+  elif [[ "$1" == "graph" ]]; then
+    git log --graph -10 --branches --remotes --tags  \
+      --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %ar) %Cred%d' \
+      --date-order
+  else
+    git log "$@"
+  fi
 }
 
 gd() {
