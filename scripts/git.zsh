@@ -54,13 +54,9 @@ ggr() {
     --date-order
 }
 
-# ex. gd | gd all | gd <file-name>
 gd() {
   if [[ "$#" -eq 0 ]]; then
-    git diff --color=always $(git diff --name-only | fzf -m)
-  elif [[ "$1" == 'all' ]]; then
-    echo "\n========== Changed ==========>>>" && git diff
-    echo "\n========== Staged ==========>>>" && git diff --staged
+    git diff --name-only | fzf -m | awk '{print $NF}' | tr '\n' '\0' | xargs -0 git diff
   else
     git diff "$@"
   fi
