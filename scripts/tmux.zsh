@@ -1,6 +1,7 @@
 # ===================================
 # Tmux utilities
 # ===================================
+TMUX_SCRIPT_CONFIG=$HOME/.dotfiles/scripts/config/tmux.json
 
 alias tmls='tmux ls'
 alias tmk='tmux kill-server'
@@ -8,7 +9,7 @@ alias tma='tmux attach'
 
 tmux!() {
   tmux kill-server 2>/dev/null
-  local config="$HOME/.dotfiles/scripts/config/tmux.json"
+  local config="$TMUX_SCRIPT_CONFIG"
   local name=$(jq -r '.name' "$config")
   local windows=($(jq -c '.windows[]' "$config" | sed "s|\$HOME|$HOME|g"))
   tmux new-session -d -s "$name" \
