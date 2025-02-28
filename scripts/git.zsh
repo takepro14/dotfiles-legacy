@@ -72,10 +72,10 @@ ga() {
 }
 
 gloc() {
-  read 'start_date?Start Date (default: 2024-01-01): '
-  read 'end_date?End Date (default: 2024-12-31): '
-  start_date=${start_date:-2024-01-01}
-  end_date=${end_date:-2024-12-31}
+  read 'start_date?Start Date (default: 2025-01-01): '
+  read 'end_date?End Date (default: 2025-12-31): '
+  start_date=${start_date:-2025-01-01}
+  end_date=${end_date:-2025-12-31}
   git log --numstat --pretty='%H' --author="$GIT_USERNAME" \
     --since="$start_date" --until="$end_date" --no-merges | \
     awk 'NF==3 {add+=$1; del+=$2} END {printf("%d (+%d, -%d)\n", add+del, add, del)}'
