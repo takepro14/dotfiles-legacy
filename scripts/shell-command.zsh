@@ -20,10 +20,15 @@ cd2() {
   [[ -n "$dir" ]] && cd "$dir"
 }
 
-rmf() {
-  local files=$(_selected_files)
-  local file_count=$(echo "$files" | wc -l | awk '{print $1}')
-  [[ -n "$file" ]] && rm $(echo "$files") && echo "$file_count files is removed."
+rm() {
+  if [[ "$1" == 'find' ]]; then
+    local files=$(_selected_files)
+    local file_count=$(echo "$files" | wc -l | awk '{print $1}')
+    [[ -n "$files" ]] && rm $(echo "$files") && echo "$file_count files is removed."
+  else
+    # Avoid recursive call
+    command rm "$@"
+  fi
 }
 
 # --- Environment Management ---
