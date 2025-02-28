@@ -65,25 +65,36 @@ psk() {
 }
 
 # --- Vim Commands ---
-for p in vim vmi ivm imv mvi miv; do alias $p='nvim'; done
-alias vimi='nvim -u ${HOME}/.dotfiles/config/nvim/init-minimal.lua'
-
-vimf() {
-  local file=$(_selected_file)
-  [[ -n "$file" ]] && nvim "$file"
-}
-
-vimd() {
-  local file1 file2
-  file1=$(_selected_file 'File1: ') && echo "File 1: $file1" || return 1
-  file2=$(_selected_file 'File2: ') && echo "File 2: $file2" || return 1
-  nvim -d $file1 $file2
-}
-
-vimperf() {
-  local filename=$(date +"startuptime_%Y-%m-%d_%H:%M:%S.log")
-  vim --startuptime "$filename" +q
-  nvim "$filename"
+vim() {
+  case "$1" in
+    help)
+      echo "Usage: vim [change|diff|perf|find|mini|<file>]"
+      ;;
+    change)
+      nvim $(git ls-files --others --exclude-standard && git diff --name-only)
+      ;;
+    diff)
+      local file1 file2
+      file1=$(_selected_file 'File1: ') && echo "File 1: $file1" || return 1
+      file2=$(_selected_file 'File2: ') && echo "File 2: $file2" || return 1
+      nvim -d "$file1" "$file2"
+      ;;
+    perf)
+      local filename=$(date +"startuptime_%Y-%m-%d_%H:%M:%S.log")
+      vim --startuptime "$filename" +q
+      nvim "$filename"
+      ;;
+    find)
+      local file=$(_selected_file)
+      [[ -n "$file" ]] && nvim "$file"
+      ;;
+    mini)
+      nvim -u "${HOME}/.dotfiles/config/nvim/init-minimal.lua"
+      ;;
+    *)
+      nvim "$@"
+      ;;
+  esac
 }
 
 # --- Useful Tools ---
