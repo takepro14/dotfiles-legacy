@@ -62,13 +62,6 @@ zc() {
   } | nvim -
 }
 
-# --- System Info & Process Management ---
-psk() {
-  local cpu_col=3
-  local pid=$(ps aux | sort -rk $cpu_col | fzf --header="$(ps aux | head -n 1)" | awk '{print $2}')
-  [[ -n "$pid" ]] && kill -9 "$pid" && echo "Killed process $pid"
-}
-
 # --- Vim Commands ---
 vim() {
   case "$1" in
