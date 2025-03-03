@@ -1,5 +1,3 @@
-# AtCoder utilities
-
 abc() {
   contest=$1
   pj_root=~/ghq/github.com/takepro14/atcoder
@@ -17,3 +15,4 @@ abc() {
 
   nvim abc${CONTEST}/${PROBLEM}.cpp
 }
+

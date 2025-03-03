@@ -1,5 +1,3 @@
-# Google Kubernetes Engine utilities
-
 gauth() {
   export GOOGLE_APPLICATION_CREDENTIALS=$(find ~/.gcloud/*.json -type f | fzf)
   export GOOGLE_PROJECT_ID=$(cat $GOOGLE_APPLICATION_CREDENTIALS | jq -r '.project_id')

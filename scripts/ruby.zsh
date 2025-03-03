@@ -1,7 +1,3 @@
-# ===================================
-# Ruby utilities
-# ===================================
-
 rubocop() {
   docker compose run --rm app bundle exec rubocop -a
 }
@@ -39,3 +35,4 @@ cleanup() {
   docker container prune -f && \
   docker volume rm $(docker volume ls -q -f name=redis-data | fzf)
 }
+

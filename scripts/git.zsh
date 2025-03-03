@@ -1,8 +1,5 @@
-# Git utilities
-
 local GIT_USERNAME=$(git config user.name)
 
-# --- Git (Local Repo) ---
 alias g='git'
 alias gi='git init'
 alias gp='git push'
@@ -86,8 +83,6 @@ repo() {
   [[ -n "$selected" ]] && cd $(echo "$selected" | awk '{print $2}')
 }
 
-
-# --- GitHub (Remote Repo) ---
 # ex. ghrepo | ghrepo create | ghrepo clone
 ghrepo() {
   if [[ -z "$1" ]]; then

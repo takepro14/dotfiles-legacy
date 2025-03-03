@@ -1,8 +1,3 @@
-# ===================================
-# Docker utilities
-# ===================================
-
-# --- Docker Commands ---
 alias d='docker'
 alias db='docker build'
 alias dr='docker run'
@@ -59,11 +54,9 @@ drmv() {
   [[ -n "$volumes" ]] && docker volume rm "$volumes"
 }
 
-# --- Docker Compose Commands ---
 alias build='docker compose build'
 alias up='docker compose up'
 alias down='docker compose down'
 alias restart='docker compose restart'
 alias run='docker compose run --rm'
-
 

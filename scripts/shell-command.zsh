@@ -1,8 +1,3 @@
-# ===================================
-# Shell commands utilities
-# ===================================
-
-# --- File Operations  ---
 alias ls='ls -G'
 alias ll="ls -lG -D '%y-%m-%d %H:%M'"
 alias la="ls -laG -D '%y-%m-%d %H:%M'"
@@ -31,7 +26,6 @@ rm() {
   fi
 }
 
-# --- Environment Management ---
 load() {
   set -a
   source ./.env;
@@ -47,7 +41,6 @@ swsh() {
   cat /etc/shells | grep -vE '^\s*(#|$)' | fzf | xargs chsh -s
 }
 
-# --- Zsh Configuration ---
 alias ze="nvim $HOME/.zshrc"
 alias zr="source $HOME/.zshrc"
 
@@ -62,7 +55,6 @@ zc() {
   } | nvim -
 }
 
-# --- Vim Commands ---
 vim() {
   case "$1" in
     help)
@@ -95,7 +87,6 @@ vim() {
   esac
 }
 
-# --- Useful Tools ---
 repcmd() {
   read 'cmd?Command: '; read 'interval?Interval (sec): '
   while true; do eval "$cmd"; sleep "$interval"; done;
@@ -115,7 +106,6 @@ fn() {
   fi
 }
 
-# --- Generators ---
 uuid() {
   uuidgen | tr \[:upper:\] \[:lower:\] | _print_and_copy
 }
@@ -130,7 +120,6 @@ b64() {
   echo "$string" | base64 $([[ $mode =~ ^[Dd]$ ]] && echo "-d") | _print_and_copy
 }
 
-# --- Network Utilities ---
 gip() {
   curl -s http://checkip.amazonaws.com
 }
@@ -139,7 +128,7 @@ ipv4() {
   ifconfig | grep -Eo "inet (addr:)?([0-9]*\.){3}[0-9]*" | grep -Eo "([0-9]*\.){3}[0-9]*" | grep -v "127.0.0.1"
 }
 
-# --- Private functions ---
+# Private functions
 
 _selected_file() {
   local prompt_arg=()

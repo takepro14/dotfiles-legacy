@@ -1,6 +1,3 @@
-# ===================================
-# Tmux utilities
-# ===================================
 TMUX_SCRIPT_CONFIG=$HOME/.dotfiles/scripts/config/tmux.json
 
 alias tmls='tmux ls'

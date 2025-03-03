@@ -1,5 +1,3 @@
-# Kubernetes utilities
-
 source <(kubectl completion zsh)
 alias kc='kubectl'
 

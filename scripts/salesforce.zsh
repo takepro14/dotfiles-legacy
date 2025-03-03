@@ -1,7 +1,3 @@
-# ===================================
-# Salesforce utilities
-# ===================================
-
 soql() {
   [[ "$#" -eq 0 ]] && echo "Usage: soql <query> <org> [all|(json|csv)]" && return 1
   local query="$1" org="$2"
