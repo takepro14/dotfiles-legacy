@@ -1,8 +1,16 @@
-# https://github.com/gggritso/dotfiles/blob/master/gitconfig.symlink
 [user]
   email = takepro100pm@gmail.com
   name = takepro14
+
 [core]
   excludesfile = ~/.gitignore_global
+  pager = delta
+
 [commit]
   template = ~/.gitmessage
+
+[delta]
+  side-by-side = true
+  line-numbers = true
+  navigate = true
+
