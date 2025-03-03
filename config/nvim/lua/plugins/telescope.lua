@@ -19,6 +19,10 @@ return {
     telescope.setup({
       telescope.load_extension('live_grep_args'),
       defaults = {
+        layout_config = {
+          prompt_position = 'top',
+        },
+        sorting_strategy = 'ascending',
         file_ignore_patterns = {
           '.git/',
           '.dropbox.cache/',
