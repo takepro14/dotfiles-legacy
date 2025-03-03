@@ -41,7 +41,6 @@ opt.visualbell = true
 opt.wildignore =
 '.git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**'
 opt.fileencoding = 'utf-8'
-opt.termguicolors = true
 opt.whichwrap = 'b,s,h,l,[,],<,>,~'
 opt.undodir = vim.fn.stdpath('state')
 opt.undofile = true
