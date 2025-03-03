@@ -12,13 +12,9 @@ tmux!() {
   local config="$TMUX_SCRIPT_CONFIG"
   local name=$(jq -r '.name' "$config")
   local windows=($(jq -c '.windows[]' "$config" | sed "s|\$HOME|$HOME|g"))
-  tmux new-session -d -s "$name" \
-    -n $(echo "${windows[1]}" | jq -r '.title') \
-    -c $(echo "${windows[1]}" | jq -r '.path')
+  tmux new-session -d -s "$name" -c $(echo "${windows[1]}" | jq -r)
   for window in "${windows[@]:1}"; do
-    tmux new-window -t "$name" \
-      -n $(echo "$window" | jq -r '.title') \
-      -c $(echo "$window" | jq -r '.path')
+    tmux new-window -t "$name" -c $(echo "$window" | jq -r)
   done
   tmux select-window -t "$name:1"
   tmux attach-session -t "$name"

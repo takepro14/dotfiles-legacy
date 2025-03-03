@@ -1,8 +1,4 @@
 {
   "name": "takepro14",
-  "windows": [
-    { "title": ".", "path": "$HOME/.dotfiles" },
-    { "title": "memo", "path": "$HOME/Dropbox" },
-    { "title": "dev", "path": "$HOME/dev" }
-  ]
+  "windows": ["$HOME/.dotfiles", "$HOME/Dropbox", "$HOME/dev"]
 }
