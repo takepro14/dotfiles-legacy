@@ -29,6 +29,10 @@ return {
           'node_modules/',
           'tmp/',
         },
+        preview = {
+          -- To avoid slowdown during live grep in telescope
+          treesitter = false,
+        },
         path_display = function(_, path)
           local tail = require('telescope.utils').path_tail(path)
           local dirname = path:match('(.*)/' .. tail) or '.'
