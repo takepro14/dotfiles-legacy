@@ -15,7 +15,7 @@ return {
       css_fn = true,   -- Enable all CSS *functions*: rgb_fn, hsl_fn
     })
     colorizer.setup({ '*' }, {
-      -- To avoid slowdown during live grep in telescope
+      -- Avoid slowdown during live grep in telescope.
       excluded = { 'TelescopePreview' },
     })
   end,

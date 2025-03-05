@@ -19,6 +19,14 @@ return {
     telescope.setup({
       telescope.load_extension('live_grep_args'),
       defaults = {
+        mappings = {
+          i = {
+            -- Override telescope's default keymap (scroll down) to delete characters.
+            ['<C-d>'] = function()
+              vim.api.nvim_input('<DEL>')
+            end,
+          },
+        },
         layout_config = {
           prompt_position = 'top',
         },
@@ -30,7 +38,7 @@ return {
           'tmp/',
         },
         preview = {
-          -- To avoid slowdown during live grep in telescope
+          -- Avoid slowdown during live grep in telescope.
           treesitter = false,
         },
         path_display = function(_, path)
