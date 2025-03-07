@@ -54,9 +54,23 @@ drmv() {
   [[ -n "$volumes" ]] && docker volume rm "$volumes"
 }
 
-alias build='docker compose build'
-alias up='docker compose up'
-alias down='docker compose down'
-alias restart='docker compose restart'
-alias run='docker compose run --rm'
+build() {
+  docker compose build "$@"
+}
+
+up() {
+  docker compose up "$@"
+}
+
+down() {
+  docker compose down "$@"
+}
+
+restart() {
+  docker compose restart "$@"
+}
+
+run() {
+  docker compose run --rm "$@"
+}
 
