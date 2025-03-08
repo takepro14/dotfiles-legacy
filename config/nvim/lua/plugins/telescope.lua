@@ -15,6 +15,25 @@ return {
   },
   config = function()
     local telescope = require('telescope')
+    local actions = require('telescope.actions')
+    local action_state = require('telescope.actions.state')
+
+    local function open_selected_files(prompt_bufnr)
+      local picker = action_state.get_current_picker(prompt_bufnr)
+      local selections = picker:get_multi_selection()
+      actions.close(prompt_bufnr)
+
+      for _, entry in ipairs(selections) do
+        -- Check based on path to work with both find_files and live_grep.
+        if entry.path then
+          vim.cmd('edit ' .. entry.path)
+          -- In find_files, entry.lnum is nil, but in live_grep, it is the line number of the search hit.
+          if entry.lnum then
+            vim.api.nvim_win_set_cursor(0, { entry.lnum, 0 })
+          end
+        end
+      end
+    end
 
     telescope.setup({
       telescope.load_extension('live_grep_args'),
@@ -25,6 +44,7 @@ return {
             ['<C-d>'] = function()
               vim.api.nvim_input('<DEL>')
             end,
+            ['<C-o>'] = open_selected_files,
           },
         },
         layout_config = {
