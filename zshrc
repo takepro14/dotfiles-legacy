@@ -44,6 +44,8 @@ export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 eval "$(/opt/homebrew/bin/brew shellenv)"
 source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+export PATH="$(go env GOPATH)/bin:$PATH"
+export PATH="$(gem environment gemdir)/bin:$PATH"
 
 # Launch docker engine
 ! pgrep -f "Docker.app" > /dev/null && open -a Docker
