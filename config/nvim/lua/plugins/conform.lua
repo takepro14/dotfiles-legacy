@@ -5,6 +5,7 @@ return {
       formatters_by_ft = {
         javascript = { "prettierd", "prettier", stop_after_first = true },
         typescript = { "prettierd", "prettier", stop_after_first = true },
+        markdown = { "prettierd", "prettier", stop_after_first = true },
         ruby = { "rubocop" },
         python = { "black", "isort" },
         go = { "goimports" },

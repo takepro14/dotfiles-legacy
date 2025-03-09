@@ -41,6 +41,7 @@ return {
       html = {},
       cssls = {},
       ts_ls = {},
+      marksman = {},
       solargraph = {},
       pyright = {},
       clangd = {},
