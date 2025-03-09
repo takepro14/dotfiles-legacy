@@ -1,8 +1,8 @@
-local ls = require('luasnip')
+local ls = require("luasnip")
 
 local codes = {
-  ['fro'] = {
-    '# frozen_string_literal: true',
+  ["fro"] = {
+    "# frozen_string_literal: true",
   },
 }
 

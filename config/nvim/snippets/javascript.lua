@@ -1,10 +1,10 @@
-local ls = require('luasnip')
+local ls = require("luasnip")
 
 local codes = {
-  ['for'] = {
-    'for (let i = 0; i < array.length; i++) {',
-    '  console.log(array[i]);',
-    '}',
+  ["for"] = {
+    "for (let i = 0; i < array.length; i++) {",
+    "  console.log(array[i]);",
+    "}",
   },
 }
 

@@ -1,4 +1,4 @@
 return {
-  'mechatroner/rainbow_csv',
-  event = { 'BufRead', 'BufNewFile' },
+  "mechatroner/rainbow_csv",
+  event = { "BufRead", "BufNewFile" },
 }

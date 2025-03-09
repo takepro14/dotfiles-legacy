@@ -1,13 +1,13 @@
-local ls = require('luasnip')
+local ls = require("luasnip")
 
 local codes = {
-  ['shebang'] = {
-    '#!/bin/sh -eu',
+  ["shebang"] = {
+    "#!/bin/sh -eu",
   },
-  ['for'] = {
+  ["for"] = {
     'for item in "${items[@]}"; do',
     '  echo "Hello, ${item}!!"',
-    'done',
+    "done",
   },
 }
 

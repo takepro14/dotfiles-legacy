@@ -1,10 +1,10 @@
 return {
-  'folke/trouble.nvim',
-  dependencies = 'nvim-tree/nvim-web-devicons',
+  "folke/trouble.nvim",
+  dependencies = "nvim-tree/nvim-web-devicons",
   lazy = true,
-  event = 'LspAttach',
+  event = "LspAttach",
   keys = {
-    { '<Leader>e', '<cmd>TroubleToggle<CR>', desc = 'Trouble' },
+    { "<Leader>e", "<cmd>TroubleToggle<CR>", desc = "Trouble" },
   },
   config = true,
 }

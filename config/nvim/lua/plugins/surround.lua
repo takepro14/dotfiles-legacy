@@ -1,6 +1,6 @@
 return {
-  'kylechui/nvim-surround',
+  "kylechui/nvim-surround",
   lazy = true,
-  event = 'BufRead',
+  event = "BufRead",
   config = true,
 }

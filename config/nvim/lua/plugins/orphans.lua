@@ -1,6 +1,6 @@
 return {
-  'ZWindL/orphans.nvim',
+  "ZWindL/orphans.nvim",
   config = function()
-    require('orphans').setup({})
+    require("orphans").setup({})
   end,
 }

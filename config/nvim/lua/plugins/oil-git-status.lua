@@ -1,7 +1,7 @@
 return {
-  'refractalize/oil-git-status.nvim',
+  "refractalize/oil-git-status.nvim",
   dependencies = {
-    'stevearc/oil.nvim',
+    "stevearc/oil.nvim",
   },
   config = true,
 }
