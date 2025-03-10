@@ -33,7 +33,7 @@ load() {
 }
 
 paths() {
-  echo ${PATH} | tr ':' '\n'
+  echo ${PATH} | tr ':' '\n' | sort
 }
 
 swsh() {
