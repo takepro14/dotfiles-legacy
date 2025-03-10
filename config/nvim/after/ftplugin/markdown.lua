@@ -37,5 +37,19 @@ function _G.markdown_outline()
   vim.cmd("copen")
 end
 
--- キーマッピングを設定 (Markdownファイル内でのみ有効)
+-- タブをスペース2つにする
+vim.opt_local.tabstop = 2
+vim.opt_local.shiftwidth = 2
+vim.opt_local.expandtab = true
+
+-- 改行時の bullet 引き継ぎなど
+vim.opt_local.comments = { "b:*", "b:-", "b:+", "b:1.", "nb:>" }
+vim.opt_local.formatoptions:remove("c")
+vim.opt_local.formatoptions:append("jro")
+
+-- インサートモードでのインデントを可能にする
+vim.api.nvim_set_keymap("i", ">>", "<Esc>>>A", { noremap = true })
+vim.api.nvim_set_keymap("i", "<<", "<Esc><<A", { noremap = true })
+
+-- Markdown専用のキーマッピングを設定
 vim.api.nvim_buf_set_keymap(0, "n", "gO", "<Cmd>lua _G.markdown_outline()<CR>", { noremap = true, silent = true })
