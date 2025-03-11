@@ -5,6 +5,7 @@ return {
     require("ibl").setup({
       indent = {
         char = "▏",
+        highlight = { "Whitespace" },
       },
     })
   end,
