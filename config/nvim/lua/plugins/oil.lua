@@ -1,6 +1,6 @@
 return {
   "stevearc/oil.nvim",
-  dependencies = { { "echasnovski/mini.icons", opts = {} } },
+  dependencies = { "nvim-tree/nvim-web-devicons" },
   lazy = true,
   keys = {
     { "<Leader>o", "<cmd>Oil<CR>", silent = true, desc = "Open Oil window" },
