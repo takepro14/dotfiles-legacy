@@ -1438,6 +1438,8 @@
 			<true/>
 			<key>Draw Powerline Glyphs</key>
 			<true/>
+			<key>Faint Text Alpha</key>
+			<real>0.49821428571428572</real>
 			<key>Flashing Bell</key>
 			<false/>
 			<key>Foreground Color</key>
@@ -1501,7 +1503,7 @@
 				<real>1</real>
 			</dict>
 			<key>Minimum Contrast</key>
-			<real>0.30418741861979165</real>
+			<real>0.29648652576264878</real>
 			<key>Mouse Reporting</key>
 			<true/>
 			<key>Name</key>
