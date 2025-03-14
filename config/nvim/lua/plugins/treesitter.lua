@@ -1,8 +1,7 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
-  lazy = true,
-  event = { "BufReadPre" },
+  event = "BufReadPre",
   config = function()
     require("nvim-treesitter.configs").setup({
       ensure_installed = {
@@ -37,6 +36,10 @@ return {
         "vue",
         "yaml",
       },
+      modules = {},
+      sync_install = false,
+      auto_install = true,
+      ignore_install = {},
       highlight = { enable = true },
       indent = { enable = true },
     })

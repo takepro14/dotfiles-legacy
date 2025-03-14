@@ -1,6 +1,5 @@
 return {
   "ray-x/lsp_signature.nvim",
-  lazy = true,
   event = "LspAttach",
   opts = {
     bind = true,

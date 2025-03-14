@@ -1,17 +1,15 @@
 return {
   "nvim-telescope/telescope.nvim",
-  tag = "0.1.6",
+  tag = "0.1.8",
   dependencies = {
     "nvim-lua/plenary.nvim",
-    "nvim-telescope/telescope-live-grep-args.nvim",
-    version = "^1.0.0",
+    { "nvim-telescope/telescope-live-grep-args.nvim", version = "^1.0.0" },
   },
-  lazy = true,
   keys = {
-    { "<leader>ff", "<cmd>Telescope find_files<CR>", {} },
-    { "<leader>fg", "<cmd>Telescope live_grep<CR>", {} },
-    { "<leader>fb", "<cmd>Telescope buffers<CR>", {} },
-    { "<leader>fh", "<cmd>Telescope help_tags<CR>", {} },
+    { "<leader>ff", "<cmd>Telescope find_files<CR>", { silent = true, noremap = true } },
+    { "<leader>fg", "<cmd>Telescope live_grep<CR>", { silent = true, noremap = true } },
+    { "<leader>fb", "<cmd>Telescope buffers<CR>", { silent = true, noremap = true } },
+    { "<leader>fh", "<cmd>Telescope help_tags<CR>", { silent = true, noremap = true } },
   },
   config = function()
     local telescope = require("telescope")

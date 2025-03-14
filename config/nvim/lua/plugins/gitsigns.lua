@@ -1,9 +1,8 @@
 return {
   "lewis6991/gitsigns.nvim",
-  lazy = true,
   event = { "BufReadPre", "BufNewFile" },
   keys = {
-    { "<leader>gd", "<cmd>Gitsigns preview_hunk<CR>", desc = "Preview Git Diff" },
+    { "<leader>gd", "<cmd>Gitsigns preview_hunk<CR>", { silent = true, noremap = true } },
   },
   config = function()
     require("gitsigns").setup({

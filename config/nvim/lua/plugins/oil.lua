@@ -1,9 +1,8 @@
 return {
   "stevearc/oil.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
-  lazy = true,
   keys = {
-    { "<Leader>o", "<cmd>Oil<CR>", silent = true, desc = "Open Oil window" },
+    { "<Leader>o", "<cmd>Oil<CR>", { silent = true, noremap = true } },
   },
   config = function()
     require("oil").setup({
@@ -19,7 +18,7 @@ return {
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "oil",
       callback = function()
-        vim.keymap.set("n", "q", "<cmd>bd<CR>", { buffer = true, silent = true, desc = "Close Oil window" })
+        vim.keymap.set("n", "q", "<cmd>bd<CR>", { buffer = true, silent = true })
       end,
     })
   end,

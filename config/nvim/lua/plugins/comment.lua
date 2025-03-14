@@ -1,8 +1,7 @@
 return {
   "numToStr/Comment.nvim",
-  lazy = true,
-  event = "UIEnter",
   dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
+  event = "UIEnter",
   opts = {
     enable_autocmd = false,
     toggler = { line = "<Leader>/" }, -- for single line

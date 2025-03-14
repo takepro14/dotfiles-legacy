@@ -1,12 +1,11 @@
 return {
   -- Enables easy configuration of Neovim's built-in LSP client
   "neovim/nvim-lspconfig",
-  lazy = true,
-  event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     "b0o/schemastore.nvim",
   },
+  event = { "BufReadPre", "BufNewFile" },
   config = function()
     -- Capabilities that LSP clients want the LSP server to provide
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
