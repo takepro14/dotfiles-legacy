@@ -42,7 +42,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local set = vim.keymap.set
     set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { buffer = true })
     set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { buffer = true })
-    set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", { buffer = true })
+    set("n", "<leader>k", "<cmd>lua vim.lsp.buf.hover()<CR>", { buffer = true })
     set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", { buffer = true })
     set("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { buffer = true })
     set("n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", { buffer = true })
