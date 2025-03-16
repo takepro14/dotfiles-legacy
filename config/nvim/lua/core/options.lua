@@ -1,57 +1,50 @@
 local opt = vim.opt
+
+-- UI
 opt.number = true
 opt.cursorline = true
-opt.confirm = true
-opt.title = true
-opt.cmdheight = 1
-opt.termguicolors = true
-opt.updatetime = 100
-opt.textwidth = 0
 opt.signcolumn = "auto"
-opt.background = "dark"
-opt.clipboard = { "unnamed", "unnamedplus" }
-opt.tabstop = 2
-opt.shiftwidth = 2
-opt.inccommand = "split"
-opt.showmatch = true
-opt.matchtime = 1
-opt.swapfile = false
-opt.shadafile = "NONE"
-opt.mouse = "a"
-opt.fileencoding = "utf-8"
-opt.spelllang = "en_us"
-opt.fileformats = { "unix", "dos", "mac" }
-opt.ignorecase = true
-opt.smartcase = true
-opt.incsearch = true
-opt.wrapscan = true
-opt.hlsearch = true
-opt.completeopt = { "menu", "menuone", "noselect" }
-opt.timeout = true
-opt.timeoutlen = 300
-opt.autoindent = true
-opt.smartindent = true
-opt.expandtab = true
-opt.linebreak = true
+opt.termguicolors = true
 opt.list = true
 opt.listchars = { space = "·", tab = "> " }
-opt.ttimeoutlen = 1
-opt.virtualedit = "onemore"
-opt.visualbell = true
-opt.wildignore =
-  ".git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**"
-opt.fileencoding = "utf-8"
-opt.whichwrap = "b,s,h,l,[,],<,>,~"
-opt.undodir = vim.fn.stdpath("state")
-opt.undofile = true
-opt.fillchars:append("eob: ")
-opt.helplang = { "ja", "en" }
-opt.wrap = true
 opt.fillchars = { fold = " " }
-opt.foldmethod = "indent"
-opt.foldenable = false
-opt.foldlevel = 99
+opt.fillchars:append("eob: ")
+
+-- Operability
+opt.confirm = true
+opt.visualbell = true
+opt.updatetime = 300
+opt.timeoutlen = 300
+opt.mouse = "a"
+opt.linebreak = true
+opt.whichwrap = "h,l"
+opt.virtualedit = "onemore"
+opt.completeopt = { "menu", "menuone", "noselect" }
+
+-- Search
+opt.ignorecase = true
+opt.smartcase = true
+opt.inccommand = "split"
+
+-- Indentation
+-- (Additional settings are in config/nvim/after/ftplugin/*.lua)
+opt.tabstop = 2
+opt.shiftwidth = 2
+opt.expandtab = true
+opt.smartindent = true
+
+-- File handling
+opt.fileencoding = "utf-8"
+opt.fileformats = { "unix", "dos", "mac" }
+opt.clipboard = { "unnamed", "unnamedplus" }
+
+-- History
+opt.swapfile = false
+opt.undofile = true
+opt.undodir = vim.fn.stdpath("state")
+opt.shadafile = "NONE"
+
+-- Folding
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
-vim.cmd.aunmenu({ "PopUp.How-to\\ disable\\ mouse" })
-vim.cmd.aunmenu({ "PopUp.-1-" })
+opt.foldenable = false
