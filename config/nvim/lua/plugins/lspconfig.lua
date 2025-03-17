@@ -40,10 +40,13 @@ return {
       html = {},
       cssls = {},
       ts_ls = {},
+      jsonls = {},
       marksman = {},
+      bashls = {
+        filetypes = { "sh", "zsh" },
+      },
       solargraph = {},
       pyright = {},
-      clangd = {},
       gopls = {
         gofumpt = true,
         usePlaceholders = true,

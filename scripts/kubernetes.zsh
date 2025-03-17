@@ -97,4 +97,3 @@ _selected_manifest() {
   local manifest=$(find "$MANIFESTS_DIR" -type f \( -name '*.yaml' -o -name '*.yml' \) | fzf --prompt="Manifest: ")
   [[ -n "$manifest" ]] && echo "Manifest: $manifest\n-----" >&2 && echo "$manifest"
 }
-

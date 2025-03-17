@@ -19,9 +19,9 @@ dat() {
 drm() {
   if [[ -z "$1" ]]; then
     local containers=$(
-      docker ps -a --format "{{.Names}}({{.Image}}) {{.Status}} {{.ID}}" \
-        | column -t \
-        | fzf --multi --prompt="Remove containers: "
+      docker ps -a --format "{{.Names}}({{.Image}}) {{.Status}} {{.ID}}" |
+        column -t |
+        fzf --multi --prompt="Remove containers: "
     )
     [[ -n "$containers" ]] && docker rm -vf $(echo "$containers" | awk '{print $NF}' | xargs -r echo)
   elif [[ "$1" == 'auto' ]]; then
@@ -36,9 +36,9 @@ drm() {
 drmi() {
   if [[ -z "$1" ]]; then
     local images=$(
-      docker images --format "{{.Repository}}:{{.Tag}} {{.CreatedSince}} {{.Size}} {{.ID}}" \
-        | column -t \
-        | fzf --multi --prompt="Remove image: "
+      docker images --format "{{.Repository}}:{{.Tag}} {{.CreatedSince}} {{.Size}} {{.ID}}" |
+        column -t |
+        fzf --multi --prompt="Remove image: "
     )
     [[ -n "$images" ]] && docker rmi $(echo "$images" | awk '{print $NF}' | xargs -r echo)
   elif [[ "$1" == 'auto' ]]; then
@@ -73,4 +73,3 @@ restart() {
 run() {
   docker compose run --rm "$@"
 }
-

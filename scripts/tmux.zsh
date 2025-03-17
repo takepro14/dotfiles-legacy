@@ -24,4 +24,3 @@ ide() {
   tmux select-pane -t 0
   nvim
 }
-

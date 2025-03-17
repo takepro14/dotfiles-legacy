@@ -8,7 +8,8 @@ zplug "zsh-users/zsh-autosuggestions"
 if ! zplug check --verbose; then
   printf "Install? [y/N]: "
   if read -q; then
-    echo; zplug install
+    echo
+    zplug install
   fi
 fi
 zplug load
@@ -37,7 +38,7 @@ bindkey "^R" history-incremental-search-backward
 bindkey "^S" history-incremental-search-forward
 bindkey "^P" up-line-or-history
 bindkey "^N" down-line-or-history
-bindkey -e  # enable emacs style key bind
+bindkey -e # enable emacs style key bind
 
 # Language specific settings
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
@@ -48,7 +49,7 @@ export PATH="$(go env GOPATH)/bin:$PATH"
 export PATH="$(gem environment gemdir)/bin:$PATH"
 
 # Launch docker engine
-! pgrep -f "Docker.app" > /dev/null && open -a Docker
+! pgrep -f "Docker.app" >/dev/null && open -a Docker
 
 # Language specific utilities
 for file in $HOME/.dotfiles/scripts/*.zsh; do
@@ -57,4 +58,3 @@ done
 
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
-

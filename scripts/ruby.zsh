@@ -31,8 +31,7 @@ ridgepole() {
 }
 
 cleanup() {
-  rm -f tmp/pids/server.pid && \
-  docker container prune -f && \
-  docker volume rm $(docker volume ls -q -f name=redis-data | fzf)
+  rm -f tmp/pids/server.pid &&
+    docker container prune -f &&
+    docker volume rm $(docker volume ls -q -f name=redis-data | fzf)
 }
-

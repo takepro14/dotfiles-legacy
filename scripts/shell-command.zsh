@@ -7,7 +7,7 @@ alias ....='../../../'
 alias .....='../../../../'
 
 mkcd() {
-  mkdir -p $1 && cd $_;
+  mkdir -p $1 && cd $_
 }
 
 cd2() {
@@ -28,8 +28,8 @@ rm() {
 
 load() {
   set -a
-  source ./.env;
-  set +a;
+  source ./.env
+  set +a
 }
 
 paths() {
@@ -46,51 +46,61 @@ alias zr="source $HOME/.zshrc"
 
 zc() {
   {
-    echo "\n--- Config Files ---"; echo "ZDOTDIR: $ZDOTDIR\nZSH: $ZSH\n.zshrc: ${ZDOTDIR:-$HOME}/.zshrc"
-    echo "\n--- Env Variables ---"; env
-    echo "\n--- Options ---"; set -o
-    echo "\n--- Key Bindings ---"; bindkey
-    echo "\n--- Aliases ---"; alias
-    echo "\n--- Functions ---"; functions | awk '/^[-_a-zA-Z0-9]+ \(\) \{$/ {print $1}'
+    echo "\n--- Config Files ---"
+    echo "ZDOTDIR: $ZDOTDIR\nZSH: $ZSH\n.zshrc: ${ZDOTDIR:-$HOME}/.zshrc"
+    echo "\n--- Env Variables ---"
+    env
+    echo "\n--- Options ---"
+    set -o
+    echo "\n--- Key Bindings ---"
+    bindkey
+    echo "\n--- Aliases ---"
+    alias
+    echo "\n--- Functions ---"
+    functions | awk '/^[-_a-zA-Z0-9]+ \(\) \{$/ {print $1}'
   } | nvim -
 }
 
 vim() {
   case "$1" in
-    help)
-      echo "Usage: vim [change|diff|perf|find|mini|<file>]"
-      ;;
-    change)
-      nvim $(git ls-files --others --exclude-standard && git diff --name-only)
-      ;;
-    diff)
-      local file1 file2
-      file1=$(_selected_file 'File1: ') && echo "File 1: $file1" || return 1
-      file2=$(_selected_file 'File2: ') && echo "File 2: $file2" || return 1
-      nvim -d "$file1" "$file2"
-      ;;
-    perf)
-      local filename=$(date +"startuptime_%Y-%m-%d_%H:%M:%S.log")
-      vim --startuptime "$filename" +q
-      nvim "$filename"
-      ;;
-    find)
-      local file=$(_selected_file)
-      [[ -n "$file" ]] && nvim "$file"
-      ;;
-    mini)
-      shift
-      nvim -u "${HOME}/.dotfiles/config/nvim/init-minimal.lua" "$@"
-      ;;
-    *)
-      nvim "$@"
-      ;;
+  help)
+    echo "Usage: vim [change|diff|perf|find|mini|<file>]"
+    ;;
+  change)
+    nvim $(git ls-files --others --exclude-standard && git diff --name-only)
+    ;;
+  diff)
+    local file1 file2
+    file1=$(_selected_file 'File1: ') && echo "File 1: $file1" || return 1
+    file2=$(_selected_file 'File2: ') && echo "File 2: $file2" || return 1
+    nvim -d "$file1" "$file2"
+    ;;
+  perf)
+    local filename=$(date +"startuptime_%Y-%m-%d_%H:%M:%S.log")
+    vim --startuptime "$filename" +q
+    nvim "$filename"
+    ;;
+  find)
+    local file=$(_selected_file)
+    [[ -n "$file" ]] && nvim "$file"
+    ;;
+  mini)
+    shift
+    nvim -u "${HOME}/.dotfiles/config/nvim/init-minimal.lua" "$@"
+    ;;
+  *)
+    nvim "$@"
+    ;;
   esac
 }
 
 repcmd() {
-  read 'cmd?Command: '; read 'interval?Interval (sec): '
-  while true; do eval "$cmd"; sleep "$interval"; done;
+  read 'cmd?Command: '
+  read 'interval?Interval (sec): '
+  while true; do
+    eval "$cmd"
+    sleep "$interval"
+  done
 }
 
 fn() {
@@ -112,12 +122,14 @@ uuid() {
 }
 
 keygen() {
-  read 'length?Length (default: 12): '; local length=${length:-12}
+  read 'length?Length (default: 12): '
+  local length=${length:-12}
   openssl rand -base64 "$length" | _print_and_copy
 }
 
 b64() {
-  read 'string?String: '; read 'mode?Encode or Decode? (e/d): '
+  read 'string?String: '
+  read 'mode?Encode or Decode? (e/d): '
   echo "$string" | base64 $([[ $mode =~ ^[Dd]$ ]] && echo "-d") | _print_and_copy
 }
 
@@ -146,4 +158,3 @@ _selected_files() {
 _print_and_copy() {
   tee >(pbcopy) && echo 'Copied!'
 }
-

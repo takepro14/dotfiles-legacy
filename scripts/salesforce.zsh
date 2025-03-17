@@ -26,8 +26,8 @@ sfmeta() {
 sfcol() {
   [[ "$#" -eq 0 ]] && echo "Usage: sfcol <obj> <org>" && return 1
   local obj="$1" org="$2"
-  sf sobject describe -s $obj -o $org |\
-    jq -r '.fields[] | [.label, .name] | @sh' |\
+  sf sobject describe -s $obj -o $org |
+    jq -r '.fields[] | [.label, .name] | @sh' |
     awk 'BEGIN {print "fields=("} {print "  (" $0 ")"} END {print ")"}'
 }
 
@@ -36,4 +36,3 @@ sfacc() {
   local userid="$1" recordid="$2" org="$3"
   sf data query -q "SELECT RecordId, HasReadAccess FROM UserRecordAccess WHERE UserId = '$userid' AND RecordId = '$recordid'" -o $org
 }
-

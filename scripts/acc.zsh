@@ -15,4 +15,3 @@ abc() {
 
   nvim abc${CONTEST}/${PROBLEM}.cpp
 }
-
