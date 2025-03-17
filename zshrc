@@ -49,7 +49,7 @@ export PATH="$(go env GOPATH)/bin:$PATH"
 export PATH="$(gem environment gemdir)/bin:$PATH"
 
 # Launch docker engine
-! pgrep -f "Docker.app" >/dev/null && open -a Docker
+pgrep -f "Docker.app" >/dev/null || open -a Docker
 
 # Language specific utilities
 for file in $HOME/.dotfiles/scripts/*.zsh; do
