@@ -1,6 +1,6 @@
 alias ls='ls -G'
-alias ll="ls -lG -D '%y-%m-%d %H:%M'"
-alias la="ls -laG -D '%y-%m-%d %H:%M'"
+alias ll="ls -lhG -D '%y-%m-%d %H:%M'"
+alias la="ls -lahG -D '%y-%m-%d %H:%M'"
 alias -g C='| wc -l'
 alias ...='../../'
 alias ....='../../../'
