@@ -17,7 +17,7 @@ opt.updatetime = 300
 opt.timeoutlen = 300
 opt.mouse = "a"
 opt.linebreak = true
-opt.whichwrap = "h,l"
+opt.whichwrap = "b,s,h,l,[,],<,>,~"
 opt.virtualedit = "onemore"
 opt.completeopt = { "menu", "menuone", "noselect" }
 
