@@ -9,7 +9,6 @@ alias gcm='git commit'
 alias gst='git status'
 alias gsh='git stash'
 alias gsw='git switch'
-alias gbr='git branch'
 
 # unchange
 guch() {
@@ -35,8 +34,14 @@ gco() {
   git branch | fzf | xargs git switch
 }
 
-grmb() {
-  git branch | fzf | xargs git branch -D
+gbr() {
+  if [[ "$1" == "rm" ]]; then
+    git branch | fzf | xargs git branch -D
+  elif [[ "$1" == "parent" ]]; then
+    git show-branch | grep '*' | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -1 | awk -F'[]~^[]' '{print $2}'
+  else
+    git branch "$@"
+  fi
 }
 
 gl() {
