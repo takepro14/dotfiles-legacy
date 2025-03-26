@@ -38,24 +38,28 @@ vim.diagnostic.config({
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
-  callback = function(ctx)
+  callback = function()
     local set = vim.keymap.set
-    set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { buffer = true })
-    set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { buffer = true })
-    set("n", "<leader>k", "<cmd>lua vim.lsp.buf.hover()<CR>", { buffer = true })
-    set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", { buffer = true })
-    set("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { buffer = true })
-    set("n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", { buffer = true })
-    set("n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", { buffer = true })
-    set("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", { buffer = true })
-    set("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", { buffer = true })
-    set("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", { buffer = true })
-    set("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", { buffer = true })
-    set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", { buffer = true })
-    set("n", "<space>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", { buffer = true })
-    set("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", { buffer = true })
-    set("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", { buffer = true })
-    set("n", "<space>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", { buffer = true })
-    set("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", { buffer = true })
+    local default_opts = { buffer = true, silent = true, noremap = true }
+
+    set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", default_opts)
+    set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", default_opts)
+    set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", default_opts)
+    set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", default_opts)
+
+    set("n", "<leader>h", "<cmd>lua vim.lsp.buf.hover()<CR>", default_opts)
+    set("n", "<leader>s", "<cmd>lua vim.lsp.buf.signature_help()<CR>", default_opts)
+
+    set("n", "<leader>do", vim.diagnostic.open_float, default_opts)
+    set("n", "<leader>dn", vim.diagnostic.goto_next, default_opts)
+    set("n", "<leader>dp", vim.diagnostic.goto_prev, default_opts)
+
+    set("n", "<leader>en", function()
+      vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
+    end, default_opts)
+
+    set("n", "<leader>ep", function()
+      vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
+    end, default_opts)
   end,
 })
