@@ -84,10 +84,6 @@ vim() {
     local file=$(_selected_file)
     [[ -n "$file" ]] && nvim "$file"
     ;;
-  mini)
-    shift
-    nvim -u "${HOME}/.dotfiles/config/nvim/init-minimal.lua" "$@"
-    ;;
   *)
     nvim "$@"
     ;;
