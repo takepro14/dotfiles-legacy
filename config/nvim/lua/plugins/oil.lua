@@ -2,7 +2,7 @@ return {
   "stevearc/oil.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   keys = {
-    { "<Leader>o", "<cmd>Oil<CR>", { silent = true, noremap = true } },
+    { "<leader>o", "<cmd>Oil<CR>", { silent = true, noremap = true } },
   },
   config = function()
     require("oil").setup({
