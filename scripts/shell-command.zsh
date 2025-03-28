@@ -142,13 +142,13 @@ ipv4() {
 _selected_file() {
   local prompt_arg=()
   [[ -n "$1" ]] && prompt_arg=(--prompt "$1")
-  fzf "${prompt_arg[@]}" --preview 'bat --theme="GitHub" --style=numbers --color=always {}'
+  fzf "${prompt_arg[@]}" --preview 'bat --theme=Dracula --style=numbers --color=always {}'
 }
 
 _selected_files() {
   local prompt_arg=()
   [[ -n "$1" ]] && prompt_arg=(--prompt "$1")
-  fzf "${prompt_arg[@]}" --multi --preview 'bat --theme=GitHub --style=numbers --color=always {}'
+  fzf "${prompt_arg[@]}" --multi --preview 'bat --theme=Dracula --style=numbers --color=always {}'
 }
 
 _print_and_copy() {
