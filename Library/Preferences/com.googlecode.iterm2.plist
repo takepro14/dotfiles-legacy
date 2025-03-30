@@ -1503,7 +1503,7 @@
 				<real>1</real>
 			</dict>
 			<key>Minimum Contrast</key>
-			<real>0.29927827380952376</real>
+			<real>0.29502976190476188</real>
 			<key>Mouse Reporting</key>
 			<true/>
 			<key>Name</key>
@@ -1515,7 +1515,7 @@
 			<key>Non-ASCII Ligatures</key>
 			<false/>
 			<key>Normal Font</key>
-			<string>NotoSansMNF-Reg 13</string>
+			<string>HackGen35ConsoleNF-Regular 13</string>
 			<key>Only The Default BG Color Uses Transparency</key>
 			<true/>
 			<key>Open Toolbelt</key>
@@ -1576,6 +1576,8 @@
 			<string>xterm-256color</string>
 			<key>Transparency</key>
 			<real>0.0</real>
+			<key>Unicode Version</key>
+			<integer>9</integer>
 			<key>Unlimited Scrollback</key>
 			<false/>
 			<key>Use Bold Font</key>
@@ -1589,7 +1591,7 @@
 			<key>Use Non-ASCII Font</key>
 			<false/>
 			<key>Vertical Spacing</key>
-			<real>1.2</real>
+			<real>1.5</real>
 			<key>Visual Bell</key>
 			<true/>
 			<key>Window Type</key>
