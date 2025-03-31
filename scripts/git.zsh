@@ -22,7 +22,12 @@ gus() {
 
 # uncommit
 gucm() {
-  git reset --soft HEAD\^
+  if [[ -z "$1" ]]; then
+    local commit=$(git log --oneline | fzf | awk '{print $1}')
+    [[ -n "$commit" ]] && git reset --soft "$commit"^
+  elif [[ "$1" == 'redo' ]]; then
+    git reset --soft HEAD@{1}
+  fi
 }
 
 # untrack
